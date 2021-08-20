@@ -39,3 +39,5 @@ GROUP BY requesturi_operation, httpstatus;
 
 SELECT * FROM "s3_access_logs_db"."mybucket_logs"
 where httpstatus='403';
+
+arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E29U1IG3F7QPZW
