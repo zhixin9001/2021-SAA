@@ -146,5 +146,9 @@ The main difference between the policy types is the step adjustments that you ge
 ### Protect
 - Amazon GuardDuty
     - continuously monitor and protect your AWS accounts, workloads, and data stored in Amazon S3. AWS CloudTrail Events, Amazon VPC Flow Logs, and DNS Logs. It also uses integrated threat intelligence such as known malicious IP addresses, anomaly detection, and machine learning to identify threats more accurately.
+    - Disabling the service will delete all remaining data, including your findings and configurations
 - Amazon Inspector, security assessments help you check for unintended network accessibility of your Amazon EC2 instances and for vulnerabilities on those EC2 instances
-- 
+- AWS WAF is a web application firewall service, Geo match conditions
+
+### SQS
+- fifo, 300/min, batch 3000, 10 request max
