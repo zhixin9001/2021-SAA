@@ -10,9 +10,17 @@
 - version, Once you version-enable a bucket, it can never return to an unversioned state. 
 - Multipart upload, independently, no order, retry, 100 MB
 - types
+    - Standard, no The minimum storage duration charge, and the other types at least 30days, no retrive fee
+    - Intelligent-Tiering, automatic moving objects between four access tiers when access patterns change, cost savings, no retrive fee
+        - two low latency access tiers optimized for frequent and infrequent access, 
+        - and two optional archive access tiers designed for asynchronous access that are optimized for rare access.
+        - Frequent Access tier -> 30 days, Infrequent Access tier -> 90 days, (if activated) Archive Access tier -> 180 days, Deep Archive Access tier
     - One Zone-Infrequent Access (S3 One Zone-IA), Infrequent but requires rapid access when needed. costs 20% less than S3 Standard-IA
         - the minimum storage duration is 30 days before you can transition objects from S3 Standard to S3 One Zone-IA or S3 Standard-IA
-    - Standard-Infrequent Access (S3 Standard-IA),  costs more than S3 One Zone-IA
+    - Standard-Infrequent Access (S3 Standard-IA),  costs more than S3 One Zone-IA, less availability
+    - S3 Glacier, for data archiving, cheap, can upload objects directly or use lifecycle, Configurable retrieval times, from minutes to hours
+    - S3 Glacier Deep Archive, lowest cost, Retrieval time within 12 hours
+
 ### API Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
