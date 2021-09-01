@@ -1,3 +1,4 @@
+
 ### S3
 - prefix
     - Amazon S3 automatically scales to high request rates.
@@ -7,10 +8,12 @@
     - you pay only for transfers that are accelerated.
     - There are no S3 data transfer charges when data is transferred in from the internet.
     - takes advantage of Amazon CloudFront’s globally distributed edge locations.
+- cloudfront, By design, delivering data out of CloudFront can be more cost-effective than delivering it from S3 directly to your users.
 - version, Once you version-enable a bucket, it can never return to an unversioned state. 
 - Multipart upload, independently, no order, retry, 100 MB
 - types
     - Standard, no The minimum storage duration charge, and the other types at least 30days, no retrive fee
+        - pay for used,  the pricing is $0.023 per GB per month. 
     - Intelligent-Tiering, automatic moving objects between four access tiers when access patterns change, cost savings, no retrive fee
         - two low latency access tiers optimized for frequent and infrequent access, 
         - and two optional archive access tiers designed for asynchronous access that are optimized for rare access.
@@ -20,7 +23,10 @@
     - Standard-Infrequent Access (S3 Standard-IA),  costs more than S3 One Zone-IA, less availability
     - S3 Glacier, for data archiving, cheap, can upload objects directly or use lifecycle, Configurable retrieval times, from minutes to hours
     - S3 Glacier Deep Archive, lowest cost, Retrieval time within 12 hours
-
+- retention
+    - You can place a retention period on an object version either explicitly or through a bucket default setting. 
+    - When you use bucket default settings, you don't specify a Retain Until Date. Instead, you specify a duration, in either days or years
+    - Different versions of a single object can have different retention modes and periods.
 ### API Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -74,12 +80,18 @@ The main difference between the policy types is the step adjustments that you ge
     - You can mount these volumes as devices on your instances. 
     - EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance.
     - Multi-Attach: a single Provisioned IOPS SSD (io1 or io2) volume to multiple instances(up to 16 Linux instances built on the Nitro System) that are in the same Availability Zone. 
+    - $0.10 per GB-month of provisioned storage. 
 
 - EFS
     - regional, across multiple az
+    - pay only for the resources that you use. The EFS Standard Storage pricing is $0.30 per GB per month. 
 - Snowball Edge Storage Optimized
     - 80 TB of usable HDD storage, 40 vCPUs, 1 TB of SATA SSD storage, and up to 40 Gb network connectivity
     - original Snowball device had 80TB of storage space.
+- AWS Storage Gateway, cache, on premises access to virtually unlimited cloud storage
+    - File Gateway, s3, offers SMB or NFS-based access to data in Amazon S3 with local caching. 
+    - volume gw, cloud-based iSCSI block storage volumes 
+    - tape gw, moving tape backups to the cloud. not nfs interface
 
 ### Cache
 - ElastiCache
@@ -111,6 +123,5 @@ The main difference between the policy types is the step adjustments that you ge
     - HDD-backed volumes, throughput (measured in MiB/s) is a better performance measure than IOPS. CANNOT be used as a boot volume
         - Throughput Optimized HDD, st1 — A low-cost HDD designed for frequently accessed, throughput-intensive workloads.
         - Cold HDD, sc1 — The lowest-cost HDD design for less frequently accessed workloads.
-- Nitro System, a collection of AWS-built hardware and software components that enable high performance, high availability, and high security. 
-
+- Nitro System, a collection of AWS-built hardware and software components that enable high performance, high availability, and high security.
 
