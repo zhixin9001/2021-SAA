@@ -9,6 +9,10 @@
     - takes advantage of Amazon CloudFront’s globally distributed edge locations.
 - version, Once you version-enable a bucket, it can never return to an unversioned state. 
 - Multipart upload, independently, no order, retry, 100 MB
+- types
+    - One Zone-Infrequent Access (S3 One Zone-IA), Infrequent but requires rapid access when needed. costs 20% less than S3 Standard-IA
+        - the minimum storage duration is 30 days before you can transition objects from S3 Standard to S3 One Zone-IA or S3 Standard-IA
+    - Standard-Infrequent Access (S3 Standard-IA),  costs more than S3 One Zone-IA
 ### API Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -16,7 +20,7 @@
 
 ### Network
 - types
-    - AWS Direct Connect, establish a dedicated network connection from your premises to AWS.
+    - AWS Direct Connect, establish a dedicated network connection from your premises to AWS. expensive, and takes a few days to a few months to setup
     - AWS Direct Connect plus VPN, combine one or more AWS Direct Connect with the Amazon VPC VPN. This combination provides an IPsec-encrypted, reduces network costs, increases bandwidth throughput, and provides a more consistent network.
     - AWS Site-to-Site VPN, securely connect your on-premises network or branch office site to your VPC. 
     - VPC transit gateway, a network transit hub that you can use to interconnect your VPC.
@@ -64,7 +68,10 @@ The main difference between the policy types is the step adjustments that you ge
     - Multi-Attach: a single Provisioned IOPS SSD (io1 or io2) volume to multiple instances(up to 16 Linux instances built on the Nitro System) that are in the same Availability Zone. 
 
 - EFS
-    - regional, across multiple az, 
+    - regional, across multiple az
+- Snowball Edge Storage Optimized
+    - 80 TB of usable HDD storage, 40 vCPUs, 1 TB of SATA SSD storage, and up to 40 Gb network connectivity
+    - original Snowball device had 80TB of storage space.
 
 ### Cache
 - ElastiCache
