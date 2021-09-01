@@ -125,3 +125,6 @@ The main difference between the policy types is the step adjustments that you ge
         - Cold HDD, sc1 — The lowest-cost HDD design for less frequently accessed workloads.
 - Nitro System, a collection of AWS-built hardware and software components that enable high performance, high availability, and high security.
 
+### KMS
+- customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
+- 
