@@ -9,6 +9,7 @@
     - There are no S3 data transfer charges when data is transferred in from the internet.
     - takes advantage of Amazon CloudFront’s globally distributed edge locations.
 - cloudfront, By design, delivering data out of CloudFront can be more cost-effective than delivering it from S3 directly to your users.
+    - georestriction
 - version, Once you version-enable a bucket, it can never return to an unversioned state. 
 - Multipart upload, independently, no order, retry, 100 MB
 - types
@@ -62,6 +63,15 @@ The main difference between the policy types is the step adjustments that you ge
 ### Load Balancer
 - Application Load Balancer
     - target type: Instance, private IP or a Lambda function
+- route 53
+    - route policy
+        - simple
+        - failover
+        - geolocation
+        - geoproximity
+        - latency
+        - weighted
+        - multivalue answer
 
 ### Stortage
 - Amazon FSx
@@ -107,6 +117,8 @@ The main difference between the policy types is the step adjustments that you ge
     - full-text search engine, with an HTTP web interface, schema-free JSON documents
 - RDS (Relational Database Service)
     - makes it easy to set up, operate, and scale a relational database in the cloud.
+- Aurora
+    - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
 
 - Amazon Kinesis Data Streams
     - real-time processing of streaming big data
@@ -127,4 +139,12 @@ The main difference between the policy types is the step adjustments that you ge
 
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
+- SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
+- SSE-KMS, with trail
+- SSE-C , you manage the encryption keys and Amazon S3 manages the encryption
+
+### Protect
+- Amazon GuardDuty
+    - continuously monitor and protect your AWS accounts, workloads, and data stored in Amazon S3. AWS CloudTrail Events, Amazon VPC Flow Logs, and DNS Logs. It also uses integrated threat intelligence such as known malicious IP addresses, anomaly detection, and machine learning to identify threats more accurately.
+- Amazon Inspector, security assessments help you check for unintended network accessibility of your Amazon EC2 instances and for vulnerabilities on those EC2 instances
 - 
