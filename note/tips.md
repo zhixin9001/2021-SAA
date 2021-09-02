@@ -178,6 +178,7 @@
     - Disabling the service will delete all remaining data, including your findings and configurations
 - Amazon Inspector, security assessments help you check for unintended network accessibility of your Amazon EC2 instances and for vulnerabilities on those EC2 instances
 - AWS WAF is a web application firewall service, Geo match conditions
+- macie, private data
 
 ### SQS
 - fifo, 300/min, batch 3000, 10 requests max
@@ -205,4 +206,12 @@
 todo: ppt
 
 ### Identity
-- Amazon Cognito User Pools - A user pool is a user directory in Amazon Cognito. You can leverage Amazon Cognito User Pools to either provide built-in user management or integrate with external identity 
+- AWS_IAM authorization
+    - add least-privileged permissions to the respective IAM role to securely invoke your API.
+- Amazon Cognito user pools
+    - user pool is a user directory in Amazon Cognito. You can leverage Amazon Cognito User Pools to either provide built-in user management or integrate with external identity 
+    - After creating an Amazon Cognito user pool, in API Gateway, you must then create a COGNITO_USER_POOLS authorizer that uses the user pool.
+- API Gateway Lambda authorizer
+    - If you have an existing Identity Provider (IdP), you can use an API Gateway Lambda authorizer to invoke a Lambda function to authenticate/validate a given user against your IdP. 
+- Amazon Cognito Identity Pools
+    - provide AWS credentials to grant your users access to other AWS services
