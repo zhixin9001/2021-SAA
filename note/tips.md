@@ -157,12 +157,15 @@
 
 - Amazon Kinesis Data Streams
     - real-time processing of streaming big data, continuously, scalable, gigabytes 
+- AWS Database Migration Service 
+    - helps you migrate databases to AWS quickly and securely. 
+    - replicate your data with high availability and consolidate databases into a petabyte-scale data warehouse by streaming data to Amazon Redshift and Amazon S3.
 
 ### EC2 
 - Placement groups
     - Cluster placement groups, within a single az, high-throughput
     - Partition placement groups, availablity, max 7 partitions per az, can be used to deploy large distributed and replicated workloads, such as HDFS, HBase, and Cassandra, across distinct racks. visibility: which instances are in which partitions. share information accross Partitions
-    - Spread placement groups, can span multiple az in the same Region. You can have a maximum of seven running instances per Availability Zone per group. suitable for mixing instance types or launching instances over time.
+    - Spread placement groups, can span multiple az in the same Region. You can have a maximum of 7 running instances per Availability Zone per group. suitable for mixing instance types or launching instances over time.
 - volume types
     - SSD-backed volumes, frequent read/write operations with small I/O size, IOPS(每秒的讀寫次數), 
         - General Purpose SSD — gp2/3, Provides a balance of price and performance. We recommend these volumes for most workloads.
