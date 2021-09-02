@@ -74,6 +74,7 @@
         - operates on a simple hub-and-spoke model that you can use with or without a VPC
         - suitable if you have multiple branch offices and existing internet connections 
         - AWS Site-to-Site VPN and AWS Direct Connect can be invloved
+    - VPC security groups, to control the network traffic to and from your file system
 - transfer speed
     - AWS Global Accelerator, improve the performance, a good fit for non-HTTP use cases, Http also supported
     - Amazon CloudFront, CDN(content delivery network)
@@ -202,3 +203,6 @@
 ### IAM
 - IAM role
 todo: ppt
+
+### Identity
+- Amazon Cognito User Pools - A user pool is a user directory in Amazon Cognito. You can leverage Amazon Cognito User Pools to either provide built-in user management or integrate with external identity 
