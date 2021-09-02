@@ -49,11 +49,15 @@
         - latency
         - weighted
         - multivalue answer
+    - DNS cache
 
 ### Load Balancer
 - Application Load Balancer
     - target type: Instance, private IP or a Lambda function
-
+- Network Load Balancer
+    - operates at the connection level (Layer 4), routing connections to targets - Amazon EC2 instances, microservices, and containers – within Amazon Virtual Private Cloud (Amazon VPC) based on IP protocol data
+- Classic Load Balancer 
+    - provides basic load balancing across multiple Amazon EC2 instances
 ### Network
 - types
     - AWS Direct Connect, establish a dedicated network connection from your premises to AWS. expensive, and takes a few days to a few months to setup
@@ -77,6 +81,7 @@
     - VPC security groups, to control the network traffic to and from your file system
 - transfer speed
     - AWS Global Accelerator, improve the performance, a good fit for non-HTTP use cases, Http also supported
+        - bule/green 
     - Amazon CloudFront, CDN(content delivery network)
     - diff: AWS Global Accelerator & CloudFront both use the AWS global network and its edge locations around the world. CloudFront improves performance for both cacheable content and dynamic content (such as API acceleration and dynamic site delivery), while Global Accelerator improves performance for a wide range of applications over TCP or UDP. 
 
@@ -131,6 +136,7 @@
 ### Cache
 - ElastiCache for redis
     - aws makes redisbe Health Insurance Portability and Accountability Act of 1996 (HIPAA)
+    - Redis authentication tokens enable Redis to require a token (password) before allowing clients to execute commands
 
 ### DB
 - DynamoDB 
@@ -174,7 +180,8 @@
 
 ### Protect
 - Amazon GuardDuty
-    - continuously monitor and protect your AWS accounts, workloads, and data stored in Amazon S3. AWS CloudTrail Events, Amazon VPC Flow Logs, and DNS Logs. It also uses integrated threat intelligence such as known malicious IP addresses, anomaly detection, and machine learning to identify threats more accurately.
+    - continuously monitor and protect your AWS accounts, workloads, and data stored in Amazon S3. 
+    - AWS CloudTrail Events, Amazon VPC Flow Logs, and DNS Logs. It also uses integrated threat intelligence such as known malicious IP addresses, anomaly detection, and machine learning to identify threats more accurately.
     - Disabling the service will delete all remaining data, including your findings and configurations
 - Amazon Inspector, security assessments help you check for unintended network accessibility of your Amazon EC2 instances and for vulnerabilities on those EC2 instances
 - AWS WAF is a web application firewall service, Geo match conditions
@@ -203,7 +210,8 @@
 
 ### IAM
 - IAM role
-todo: ppt
+    - manage temporary credentials for applications that run on an EC2 instance
+- IAM role to manage temporary credentials for applications that run on an EC2 instance
 
 ### Identity
 - AWS_IAM authorization
@@ -215,3 +223,10 @@ todo: ppt
     - If you have an existing Identity Provider (IdP), you can use an API Gateway Lambda authorizer to invoke a Lambda function to authenticate/validate a given user against your IdP. 
 - Amazon Cognito Identity Pools
     - provide AWS credentials to grant your users access to other AWS services
+
+### AWS OpsWorks
+- automation tools 
+- chef
+- puppet
+
+
