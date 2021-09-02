@@ -8,10 +8,15 @@
     - you pay only for transfers that are accelerated.
     - There are no S3 data transfer charges when data is transferred in from the internet.
     - takes advantage of Amazon CloudFront’s globally distributed edge locations.
-- cloudfront, By design, delivering data out of CloudFront can be more cost-effective than delivering it from S3 directly to your users.
+- cloudfront
+    - By design, delivering data out of CloudFront can be more cost-effective than delivering it from S3 directly to your users.
     - georestriction
-- version, Once you version-enable a bucket, it can never return to an unversioned state. 
+- version
+    - Once you version-enable a bucket, it can never return to an unversioned state. 
+    - recover objects from accidental deletion or overwrite, delete marker
+    - MFA delete
 - Multipart upload, independently, no order, retry, 100 MB
+
 - types
     - Standard, no The minimum storage duration charge, and the other types at least 30days, no retrive fee
         - pay for used,  the pricing is $0.023 per GB per month. 
@@ -28,17 +33,47 @@
     - You can place a retention period on an object version either explicitly or through a bucket default setting. 
     - When you use bucket default settings, you don't specify a Retain Until Date. Instead, you specify a duration, in either days or years
     - Different versions of a single object can have different retention modes and periods.
-### API Gateway
+### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
     - websocket, stateful, full-duplex, route based on message content
+- Amazon API Gateway, throttles requests to your API using the token bucket algorithm
+- Amazon Gateway Endpoint, specify as a target for a route in your route table for traffic destined
+
+- route 53
+    - route policy
+        - simple
+        - failover
+        - geolocation
+        - geoproximity
+        - latency
+        - weighted
+        - multivalue answer
+
+### Load Balancer
+- Application Load Balancer
+    - target type: Instance, private IP or a Lambda function
 
 ### Network
 - types
     - AWS Direct Connect, establish a dedicated network connection from your premises to AWS. expensive, and takes a few days to a few months to setup
     - AWS Direct Connect plus VPN, combine one or more AWS Direct Connect with the Amazon VPC VPN. This combination provides an IPsec-encrypted, reduces network costs, increases bandwidth throughput, and provides a more consistent network.
     - AWS Site-to-Site VPN, securely connect your on-premises network or branch office site to your VPC. 
-    - VPC transit gateway, a network transit hub that you can use to interconnect your VPC.
+        - IPsec VPN connection
+        - a Virtual Private Gateway on the AWS side 
+        - a Customer Gateway on the on-premises side
+    - VPC transit gateway, a network transit hub that you can use to interconnect your VPC. transient（瞬态）， transit（运输）
+    - VPC peering, 一对一，没有传递性
+    - AWS PrivateLink, establishes private connectivity between virtual private clouds (VPC) and services hosted on AWS or on-premises
+        - VPC endpoint，enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+    - VPC sharing
+        - allows multiple AWS accounts 
+        - shares subnets
+        - centrally-managed
+    - VPN CloudHub
+        - operates on a simple hub-and-spoke model that you can use with or without a VPC
+        - suitable if you have multiple branch offices and existing internet connections 
+        - AWS Site-to-Site VPN and AWS Direct Connect can be invloved
 - transfer speed
     - AWS Global Accelerator, improve the performance, a good fit for non-HTTP use cases, Http also supported
     - Amazon CloudFront, CDN(content delivery network)
@@ -55,23 +90,11 @@
         - Both require you to specify the high and low thresholds for the alarms. 
         - Both require you to define whether to add or remove instances, and how many, or set the group to an exact size.
         - In most cases, step scaling policies are a better choice than simple scaling policies, even if you have only a single scaling adjustment.
-The main difference between the policy types is the step adjustments that you get with step scaling policies. When step adjustments are applied, and they increase or decrease the current capacity of your Auto Scaling group, the adjustments vary based on the size of the alarm breach.
+- standby state
+    - Instances that are on standby are still part of the Auto Scaling group
 
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
-
-### Load Balancer
-- Application Load Balancer
-    - target type: Instance, private IP or a Lambda function
-- route 53
-    - route policy
-        - simple
-        - failover
-        - geolocation
-        - geoproximity
-        - latency
-        - weighted
-        - multivalue answer
 
 ### Stortage
 - Amazon FSx
@@ -91,6 +114,7 @@ The main difference between the policy types is the step adjustments that you ge
     - EBS volumes that are attached to an instance are exposed as storage volumes that persist independently from the life of the instance.
     - Multi-Attach: a single Provisioned IOPS SSD (io1 or io2) volume to multiple instances(up to 16 Linux instances built on the Nitro System) that are in the same Availability Zone. 
     - $0.10 per GB-month of provisioned storage. 
+    - encrypted everywhere, such as snapshot create, ec2 read data,...
 
 - EFS
     - regional, across multiple az
@@ -104,7 +128,8 @@ The main difference between the policy types is the step adjustments that you ge
     - tape gw, moving tape backups to the cloud. not nfs interface
 
 ### Cache
-- ElastiCache
+- ElastiCache for redis
+    - aws makes redisbe Health Insurance Portability and Accountability Act of 1996 (HIPAA)
 
 ### DB
 - DynamoDB 
@@ -117,11 +142,14 @@ The main difference between the policy types is the step adjustments that you ge
     - full-text search engine, with an HTTP web interface, schema-free JSON documents
 - RDS (Relational Database Service)
     - makes it easy to set up, operate, and scale a relational database in the cloud.
+    - Amazon RDS Multi-AZ, at least 2 az, synchronously replicates
+    - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server database engines asynchronous replication
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
+    - auto-scales up to 64TB per database instance, up to 15 low-latency read replicas, across 3 az, a priority tier (0-15), same priority -> largest in size
 
 - Amazon Kinesis Data Streams
-    - real-time processing of streaming big data
+    - real-time processing of streaming big data, continuously, scalable, gigabytes 
 
 ### EC2 
 - Placement groups
@@ -136,7 +164,7 @@ The main difference between the policy types is the step adjustments that you ge
         - Throughput Optimized HDD, st1 — A low-cost HDD designed for frequently accessed, throughput-intensive workloads.
         - Cold HDD, sc1 — The lowest-cost HDD design for less frequently accessed workloads.
 - Nitro System, a collection of AWS-built hardware and software components that enable high performance, high availability, and high security.
-
+- security group
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
@@ -151,4 +179,26 @@ The main difference between the policy types is the step adjustments that you ge
 - AWS WAF is a web application firewall service, Geo match conditions
 
 ### SQS
-- fifo, 300/min, batch 3000, 10 request max
+- fifo, 300/min, batch 3000, 10 requests max
+
+### SNS
+- pay only for the compute time that you consume
+
+### Lambda
+- Support: c#, go, java, node.js, python, ruby
+- currently supports 1000 concurrent executions per AWS account per region
+    - need to contact AWS support to raise the account limit.
+
+### Access Control
+![Access Control](./access-control.png)
+- S3 Bucket Policies
+    - centralized management of permissions.
+    - Policies can be attached to users, groups, or Amazon S3 buckets
+    - can grant users within your AWS Account or other AWS Accounts
+    - further restrict based on certain conditions, such as request time, SSL， IP
+- permissions boundary
+    - can be used to control the maximum permissions employees can grant to the IAM principals, permissions boundary intersect with IAM permissions policy
+
+### IAM
+- IAM role
+todo: ppt
