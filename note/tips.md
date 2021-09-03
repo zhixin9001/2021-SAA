@@ -1,5 +1,6 @@
 
 ### S3
+- strong read-after-write consistency
 - prefix
     - Amazon S3 automatically scales to high request rates.
     - Your application can achieve at least 3,500 PUT/COPY/POST/DELETE or 5,500 GET/HEAD requests per second per prefix in a bucket.
@@ -33,11 +34,13 @@
     - You can place a retention period on an object version either explicitly or through a bucket default setting. 
     - When you use bucket default settings, you don't specify a Retain Until Date. Instead, you specify a duration, in either days or years
     - Different versions of a single object can have different retention modes and periods.
+- aws S3 sync command
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
     - websocket, stateful, full-duplex, route based on message content
-- Amazon API Gateway, throttles requests to your API using the token bucket algorithm
+- Amazon API Gateway
+    - throttles requests to your API using the token bucket algorithm
 - Amazon Gateway Endpoint, specify as a target for a route in your route table for traffic destined
 
 - route 53
@@ -84,6 +87,12 @@
         - bule/green 
     - Amazon CloudFront, CDN(content delivery network)
     - diff: AWS Global Accelerator & CloudFront both use the AWS global network and its edge locations around the world. CloudFront improves performance for both cacheable content and dynamic content (such as API acceleration and dynamic site delivery), while Global Accelerator improves performance for a wide range of applications over TCP or UDP. 
+- VPC console wizard
+    - VPC with a single public subnet, run a single-tier, public-facing web application, such as a blog or a simple website.
+    - VPC with public and private subnets (NAT), run a public-facing web application while maintaining back-end servers that aren't publicly accessible(database)
+    - VPC with public and private subnets and AWS Site-to-Site VPN access, run a multi-tiered application with a scalable web front end in a public subnet and **to house your data in a private subnet**
+    - VPC with a private subnet only and AWS Site-to-Site VPN access, There is no Internet gateway to enable communication over the Internet
+    - Wrong: VPC with a public subnet only and AWS Site-to-Site VPN access
 
 ### Auto Scaling group
 - policy
@@ -98,9 +107,17 @@
         - In most cases, step scaling policies are a better choice than simple scaling policies, even if you have only a single scaling adjustment.
 - standby state
     - Instances that are on standby are still part of the Auto Scaling group
+- lifecycle hooks
+    - perform custom actions
+- launch configuration
+    - an instance configuration template that an Auto Scaling group uses to launch EC2 instances
+    - can't modify a launch configuration once it is created.
 
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
+- Golden AMI 
+    - an AMI that you standardize through configuration, consistent security patching, and hardening. It also contains agents you approve for logging, security, performance monitoring
+    - Golden AMI pipeline
 
 ### Stortage
 - Amazon FSx
@@ -145,6 +162,7 @@
 - Redshift
     - a fully-managed petabyte-scale cloud-based data warehouse 
     - designed for large scale data set storage and analysis.
+    - Redshift Spectrum(光谱), query and retrieve structured and semistructured data from files in Amazon S3 without having to load the data into Amazon Redshift tables.
 - Elasticsearch
     - full-text search engine, with an HTTP web interface, schema-free JSON documents
 - RDS (Relational Database Service)
@@ -153,10 +171,13 @@
     - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server database engines asynchronous replication
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
-    - auto-scales up to 64TB per database instance, up to 15 low-latency read replicas, across 3 az, a priority tier (0-15), same priority -> largest in size
+    - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
+        - auto-scales up to 64TB per database instance, up to 15 low-latency read replicas, across 3 az, a priority tier (0-15), same priority -> largest in size
+    - MySQL and PostgreSQL-compatible
 
 - Amazon Kinesis Data Streams
-    - real-time processing of streaming big data, continuously, scalable, gigabytes 
+    - real-time processing of streaming big data, continuously, scalable, gigabytes
+    - Kinesis Data Streams Fanout
 - AWS Database Migration Service 
     - helps you migrate databases to AWS quickly and securely. 
     - replicate your data with high availability and consolidate databases into a petabyte-scale data warehouse by streaming data to Amazon Redshift and Amazon S3.
@@ -192,7 +213,8 @@
 
 ### SQS
 - fifo, 300/min, batch 3000, 10 requests max
-
+    - .fifo suffix
+- can't convert an existing standard queue into a FIFO queue.
 ### SNS
 - pay only for the compute time that you consume
 
@@ -232,4 +254,11 @@
 - chef
 - puppet
 
-
+### Others
+- AWS Glue
+    - a fully managed extract, transform, and load (ETL) service
+    - makes it easy for customers to prepare and load their data for analytics. 
+    - Glue job is meant to be used for batch ETL data processing
+- Amazon EMR
+    - cloud big data platform
+    - Apache Spark, Apache Hive, Apache HBase
