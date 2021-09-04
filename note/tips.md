@@ -200,6 +200,7 @@
     - helps you migrate databases to AWS quickly and securely. 
     - replicate your data with high availability and consolidate databases into a petabyte-scale data warehouse by streaming data to Amazon Redshift and Amazon S3.
     - supports Amazon S3 as the source and Kinesis as the target
+- AWS Schema Conversion Tool to convert the source schema and code to match that of the target database
 
 ### EC2 
 - Placement groups
@@ -243,6 +244,7 @@
 - Amazon Inspector, security assessments help you check for unintended network accessibility of your Amazon EC2 instances and for vulnerabilities on those EC2 instances
 - AWS WAF is a web application firewall service, Geo match conditions
 - macie, private data
+- AWS Shield， ddos
 
 ### SQS
 - fifo, 300/min, batch 3000, 10 requests max
@@ -307,3 +309,8 @@
 - Elastic Container Service (ECS)
     - with the EC2 launch type
     - with the Fargate launch type, vcpu, memory
+
+- AWS Cost Explorer helps you identify under-utilized EC2 instances that may be downsized on an instance by instance basis within the same instance family, and also understand the potential impact on your AWS bill by taking into account your Reserved Instances and Savings Plans.
+- AWS Compute Optimizer recommends optimal AWS Compute resources for your workloads to reduce costs and improve performance by using machine learning to analyze historical utilization metrics. Compute Optimizer helps you choose the optimal Amazon EC2 instance types, including those that are part of an Amazon EC2 Auto Scaling group, based on your utilization data.
+
+
