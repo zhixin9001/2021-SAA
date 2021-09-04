@@ -97,6 +97,9 @@
     - NAT instance can be used as a bastion server
     - Security Groups can be associated with a NAT instance
     - NAT instance supports port forwarding
+    - NAT gateway, you are charged for each hour that your NAT gateway is available and each Gigabyte of data that it processes
+    - NAT instance, charged as EC2 instance
+    - both not support ipv6
 
 
 ### Auto Scaling group
