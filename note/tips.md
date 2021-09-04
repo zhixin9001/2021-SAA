@@ -182,6 +182,8 @@
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
         - auto-scales up to 64TB per database instance, up to 15 low-latency read replicas, across 3 az, a priority tier (0-15), same priority -> largest in size
     - MySQL and PostgreSQL-compatible
+- Neptune
+    - a fast, reliable, fully managed graph database service
 
 - Amazon Kinesis Data Streams
     - real-time processing of streaming big data, continuously, scalable, gigabytes
@@ -191,6 +193,7 @@
 - AWS Database Migration Service 
     - helps you migrate databases to AWS quickly and securely. 
     - replicate your data with high availability and consolidate databases into a petabyte-scale data warehouse by streaming data to Amazon Redshift and Amazon S3.
+    - supports Amazon S3 as the source and Kinesis as the target
 
 ### EC2 
 - Placement groups
@@ -246,6 +249,10 @@
 - Support: c#, go, java, node.js, python, ruby
 - currently supports 1000 concurrent executions per AWS account per region
     - need to contact AWS support to raise the account limit.
+- Lambda functions always operate from an AWS-owned VPC.
+    -  You should only enable your functions for VPC access when you need to interact with a private resource located in a private subnet. An RDS instance is a good example.
+    - Once your function is VPC-enabled, all network traffic from your function is subject to the routing rules of your VPC/Subnet. 
+    - If your function needs to interact with a public resource, you will need a route through a NAT gateway in a public subnet.
 
 ### Access Control
 ![Access Control](./access-control.png)
