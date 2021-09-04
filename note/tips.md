@@ -93,6 +93,11 @@
     - VPC with public and private subnets and AWS Site-to-Site VPN access, run a multi-tiered application with a scalable web front end in a public subnet and **to house your data in a private subnet**
     - VPC with a private subnet only and AWS Site-to-Site VPN access, There is no Internet gateway to enable communication over the Internet
     - Wrong: VPC with a public subnet only and AWS Site-to-Site VPN access
+-  NAT instance or a NAT Gateway
+    - NAT instance can be used as a bastion server
+    - Security Groups can be associated with a NAT instance
+    - NAT instance supports port forwarding
+
 
 ### Auto Scaling group
 - policy
@@ -178,6 +183,8 @@
 - Amazon Kinesis Data Streams
     - real-time processing of streaming big data, continuously, scalable, gigabytes
     - Kinesis Data Streams Fanout
+        - By default, the 2MB/second/shard output is shared between all of the applications consuming data from the stream
+        - With enhanced fan-out developers can register stream consumers to use enhanced fan-out and receive their own 2MB/second pipe of read throughput per shard
 - AWS Database Migration Service 
     - helps you migrate databases to AWS quickly and securely. 
     - replicate your data with high availability and consolidate databases into a petabyte-scale data warehouse by streaming data to Amazon Redshift and Amazon S3.
@@ -196,6 +203,20 @@
         - Cold HDD, sc1 — The lowest-cost HDD design for less frequently accessed workloads.
 - Nitro System, a collection of AWS-built hardware and software components that enable high performance, high availability, and high security.
 - security group
+- user data 
+    - executed as the root user
+    - 2 types: shell scripts and cloud-init directives
+    - into the launch wizard as plain text or as a file.
+    - only during the boot cycle when you first launch an instance
+- instance purching options
+    - Spot Instance, an unused EC2 instance that is available for less than the On-Demand price, interrupted
+    - On-Demand Instances, you pay for compute capacity by the second with no long-term commitments
+    - Reserved Instances provide you with significant savings on your Amazon EC2 costs compared to On-Demand Instance pricing. Reserved Instances are not physical instances
+    - Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use, license
+    - Dedicated Instances,
+        - run in a virtual private cloud (VPC) on hardware that's dedicated to a single customer. 
+        - Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account.
+        -  However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances.
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
@@ -259,6 +280,11 @@
     - a fully managed extract, transform, and load (ETL) service
     - makes it easy for customers to prepare and load their data for analytics. 
     - Glue job is meant to be used for batch ETL data processing
+- X-Ray
+    - helps developers analyze and debug production, distributed applications
+    - visualize
+    - cross acount
+
 - Amazon EMR
     - cloud big data platform
     - Apache Spark, Apache Hive, Apache HBase
