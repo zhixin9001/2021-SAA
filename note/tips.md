@@ -120,6 +120,11 @@
 - launch configuration
     - an instance configuration template that an Auto Scaling group uses to launch EC2 instances
     - can't modify a launch configuration once it is created.
+    - 过时的
+- launch template
+    - mix multiple instance types using both On-Demand Instances and Spot Instances
+    - version
+    - 
 
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
@@ -153,6 +158,7 @@
 - Snowball Edge Storage Optimized
     - 80 TB of usable HDD storage, 40 vCPUs, 1 TB of SATA SSD storage, and up to 40 Gb network connectivity
     - original Snowball device had 80TB of storage space.
+    - You can't directly copy data from Snowball Edge devices into AWS Glacier.
 - AWS Storage Gateway, cache, on premises access to virtually unlimited cloud storage
     - File Gateway, s3, offers SMB or NFS-based access to data in Amazon S3 with local caching. 
     - volume gw, cloud-based iSCSI block storage volumes 
@@ -298,3 +304,6 @@
 - Amazon EMR
     - cloud big data platform
     - Apache Spark, Apache Hive, Apache HBase
+- Elastic Container Service (ECS)
+    - with the EC2 launch type
+    - with the Fargate launch type, vcpu, memory
