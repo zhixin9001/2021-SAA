@@ -170,6 +170,13 @@
     - File Gateway, s3, offers SMB or NFS-based access to data in Amazon S3 with local caching. 
     - volume gw, cloud-based iSCSI block storage volumes 
     - tape gw, moving tape backups to the cloud. not nfs interface
+    - Supported: Create a lifecycle policy to immediately move data to Glacier Deep Archive
+    - Types
+        - Standard 
+        - Standard–IA
+        - One Zone
+        - One Zone–IA 
+          
 
 ### Cache
 - ElastiCache for redis
@@ -199,11 +206,6 @@
 - Neptune
     - a fast, reliable, fully managed graph database service
 
-- Amazon Kinesis Data Streams
-    - real-time processing of streaming big data, continuously, scalable, gigabytes
-    - Kinesis Data Streams Fanout
-        - By default, the 2MB/second/shard output is shared between all of the applications consuming data from the stream
-        - With enhanced fan-out developers can register stream consumers to use enhanced fan-out and receive their own 2MB/second pipe of read throughput per shard
 - AWS Database Migration Service 
     - helps you migrate databases to AWS quickly and securely. 
     - replicate your data with high availability and consolidate databases into a petabyte-scale data warehouse by streaming data to Amazon Redshift and Amazon S3.
@@ -260,6 +262,11 @@
 - can't convert an existing standard queue into a FIFO queue.
 ### SNS
 - pay only for the compute time that you consume
+- FIFO, can only be subscribed by a SQS FIFO
+    - deduplication either by enabling content-based deduplication on the topic, 
+    - or by adding a deduplication ID to the messages that you publish
+- Standard SNS -> Standard SQS
+- FIFO SNS -> FIFO SQS
 
 ### Lambda
 - Support: c#, go, java, node.js, python, ruby
@@ -284,6 +291,9 @@
 - IAM role
     - manage temporary credentials for applications that run on an EC2 instance
 - IAM role to manage temporary credentials for applications that run on an EC2 instance
+- Lambda -> S3
+    - On same AWS Account, just grant IAM role for Lambda
+    - On different Account, IAM role for lambda & S3 bucket policy   
 
 ### Identity
 - AWS_IAM authorization
@@ -301,6 +311,19 @@
 - chef
 - puppet
 
+### Amazon Kinesis
+- Amazon Kinesis Data Streams
+    - real-time processing of streaming big data, continuously, scalable, gigabytes
+    - Kinesis Data Streams Fanout
+        - By default, the 2MB/second/shard output is shared between all of the applications consuming data from the stream
+        - With enhanced fan-out developers can register stream consumers to use enhanced fan-out and receive their own 2MB/second pipe of read throughput per shard
+- Amazon Kinesis Data Firehose
+    - reliably load streaming data into data lakes, data stores, and analytics tools.
+    - fully managed
+    - can also batch, compress, transform, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security
+    - When a Kinesis data stream is configured as the source of a Firehose delivery stream, Firehose’s PutRecord and PutRecordBatch operations are disabled, data can only come from the Kinesis data stream
+- Kinesis Agent
+    - stand-alone Java software application that offers an easy way to collect and send data to Kinesis Data Streams or Kinesis Firehose
 ### Others
 - AWS Glue
     - a fully managed extract, transform, and load (ETL) service
