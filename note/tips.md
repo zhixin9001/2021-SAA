@@ -240,6 +240,9 @@
         - run in a virtual private cloud (VPC) on hardware that's dedicated to a single customer. 
         - Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account.
         -  However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances.
+    -  Spot Fleet
+        - selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet.
+-  hibernate an instance
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
@@ -259,6 +262,7 @@
 ### SQS
 - fifo, 300/min, batch 3000, 10 requests max
     - .fifo suffix
+    - GroupID，extend consumer, keep order in group
 - can't convert an existing standard queue into a FIFO queue.
 ### SNS
 - pay only for the compute time that you consume
