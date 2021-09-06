@@ -203,6 +203,7 @@
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
         - auto-scales up to 64TB per database instance, up to 15 low-latency read replicas, across 3 az, a priority tier (0-15), same priority -> largest in size
     - MySQL and PostgreSQL-compatible
+    - Aurora multi-master DB cluster, all DB instances can perform write operations. There isn't any failover
 - Neptune
     - a fast, reliable, fully managed graph database service
 
