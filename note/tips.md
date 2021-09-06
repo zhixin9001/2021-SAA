@@ -61,6 +61,9 @@
     - operates at the connection level (Layer 4), routing connections to targets - Amazon EC2 instances, microservices, and containers – within Amazon Virtual Private Cloud (Amazon VPC) based on IP protocol data
 - Classic Load Balancer 
     - provides basic load balancing across multiple Amazon EC2 instances
+- Deregistration, 
+    - By default, 300 seconds
+
 ### Network
 - types
     - AWS Direct Connect, establish a dedicated network connection from your premises to AWS. expensive, and takes a few days to a few months to setup
@@ -124,7 +127,11 @@
 - launch template
     - mix multiple instance types using both On-Demand Instances and Spot Instances
     - version
-    - 
+- Health check
+    - grace period
+    - Impaired status(削弱), ASG waits a few minutes for the instance to recover.
+    - insufficient data, ASG might also delay or not terminate
+    - custom health checks, when unhealthy, ASG will terminate
 
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
@@ -183,6 +190,7 @@
     - makes it easy to set up, operate, and scale a relational database in the cloud.
     - Amazon RDS Multi-AZ, at least 2 az, synchronously replicates
     - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server database engines asynchronous replication
+    - if master database is encrypted, read replicas are encrypted
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
