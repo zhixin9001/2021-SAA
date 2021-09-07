@@ -106,7 +106,18 @@
     - NAT gateway, you are charged for each hour that your NAT gateway is available and each Gigabyte of data that it processes
     - NAT instance, charged as EC2 instance
     - both not support ipv6
-
+- AWS Resource Access Manager (RAM)
+    - no additional charge. 
+    - a service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization. 
+    - You can share AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM.
+    - You can create resources centrally in a multi-account environment, and use RAM to share those resources across accounts in three simple steps: 
+        - create a Resource Share
+        - specify resources
+        - specify accounts. 
+### Security groups
+- By default, security groups allow all outbound traffic.
+- Security group rules are always permissive; you can't create rules that deny access.
+- Security groups are stateful
 
 ### Auto Scaling group
 - policy
@@ -206,6 +217,7 @@
     - if master database is encrypted, read replicas are encrypted
     - You can only enable encryption for an Amazon RDS DB instance when you create it
         - can create a snapshot of your DB instance, and then create an encrypted copy of that snapshot
+    - replicating data，no charge for same region
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
