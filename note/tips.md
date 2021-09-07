@@ -73,6 +73,7 @@
         - a Virtual Private Gateway on the AWS side 
         - a Customer Gateway on the on-premises side
     - VPC transit gateway, a network transit hub that you can use to interconnect your VPC. transient（瞬态）， transit（运输）
+        -  acts as a hub
     - VPC peering, 一对一，没有传递性
     - AWS PrivateLink, establishes private connectivity between virtual private clouds (VPC) and services hosted on AWS or on-premises
         - VPC endpoint，enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
@@ -195,8 +196,10 @@
     - full-text search engine, with an HTTP web interface, schema-free JSON documents
 - RDS (Relational Database Service)
     - makes it easy to set up, operate, and scale a relational database in the cloud.
-    - Amazon RDS Multi-AZ, at least 2 az, synchronously replicates
+    - Amazon RDS Multi-AZ, at least 2 az, non-aurora: synchronously replicates, aurora: asynchronous
+        - availablity 
     - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server database engines asynchronous replication
+        - provide enhanced performance, scalability, and durability, not availablity 
     - if master database is encrypted, read replicas are encrypted
     - You can only enable encryption for an Amazon RDS DB instance when you create it
         - can create a snapshot of your DB instance, and then create an encrypted copy of that snapshot
@@ -243,6 +246,7 @@
         - run in a virtual private cloud (VPC) on hardware that's dedicated to a single customer. 
         - Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account.
         -  However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances.
+        -  single-tenant hardware
     -  Spot Fleet
         - selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet.
 -  hibernate an instance
