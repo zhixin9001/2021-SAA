@@ -301,7 +301,28 @@
 - Lambda -> S3
     - On same AWS Account, just grant IAM role for Lambda
     - On different Account, IAM role for lambda & S3 bucket policy   
-- s3:ListBucket is applied to buckets, so the ARN is in the form "Resource":"arn:aws:s3:::mybucket"q
+- s3:ListBucket is applied to buckets, so the ARN is in the form "Resource":"arn:aws:s3:::mybucket"
+- allows running EC2 instances only in the eu-west-1 region, and the API call can be made from anywhere in the world
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Mystery Policy",
+      "Action": [
+        "ec2:RunInstances"
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "eu-west-1"
+        }
+      }
+    }
+  ]
+}
+```
 
 ### Identity
 - AWS_IAM authorization
