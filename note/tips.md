@@ -198,6 +198,8 @@
     - Amazon RDS Multi-AZ, at least 2 az, synchronously replicates
     - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server database engines asynchronous replication
     - if master database is encrypted, read replicas are encrypted
+    - You can only enable encryption for an Amazon RDS DB instance when you create it
+        - can create a snapshot of your DB instance, and then create an encrypted copy of that snapshot
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
@@ -299,6 +301,7 @@
 - Lambda -> S3
     - On same AWS Account, just grant IAM role for Lambda
     - On different Account, IAM role for lambda & S3 bucket policy   
+- s3:ListBucket is applied to buckets, so the ARN is in the form "Resource":"arn:aws:s3:::mybucket"q
 
 ### Identity
 - AWS_IAM authorization
@@ -306,10 +309,12 @@
 - Amazon Cognito user pools
     - user pool is a user directory in Amazon Cognito. You can leverage Amazon Cognito User Pools to either provide built-in user management or integrate with external identity 
     - After creating an Amazon Cognito user pool, in API Gateway, you must then create a COGNITO_USER_POOLS authorizer that uses the user pool.
+    - for CloudFront distribution, you have to create a separate Lambda@Edge
 - API Gateway Lambda authorizer
     - If you have an existing Identity Provider (IdP), you can use an API Gateway Lambda authorizer to invoke a Lambda function to authenticate/validate a given user against your IdP. 
 - Amazon Cognito Identity Pools
     - provide AWS credentials to grant your users access to other AWS services
+    - provide temporary AWS credentials for users who are guests (unauthenticated) and for users who have been authenticated and received a token.
 
 ### AWS OpsWorks
 - automation tools 
