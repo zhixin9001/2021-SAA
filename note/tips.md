@@ -117,7 +117,8 @@
 ### Security groups
 - By default, security groups allow all outbound traffic.
 - Security group rules are always permissive; you can't create rules that deny access.
-- Security groups are stateful
+- Security Groups are stateful, so allowing inbound traffic to the necessary ports enables the connection. 
+- Network ACLs are stateless, so you must allow both inbound and outbound traffic
 
 ### Auto Scaling group
 - policy
@@ -146,6 +147,8 @@
     - Impaired status(削弱), ASG waits a few minutes for the instance to recover.
     - insufficient data, ASG might also delay or not terminate
     - custom health checks, when unhealthy, ASG will terminate
+- default termination policy
+    - on-demand/spot instance -> old launch config -> old launch template -> close to next billing
 
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
@@ -312,6 +315,8 @@
     - further restrict based on certain conditions, such as request time, SSL， IP
 - permissions boundary
     - can be used to control the maximum permissions employees can grant to the IAM principals, permissions boundary intersect with IAM permissions policy
+- Service control policies (SCPs) 
+    - available only in an organization that has all features enabled
 
 ### IAM
 - IAM role
