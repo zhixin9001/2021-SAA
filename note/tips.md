@@ -178,6 +178,7 @@
         - Standard–IA
         - One Zone
         - One Zone–IA 
+    - Storage Gateway optimizes data transfer to AWS by sending only changed data and compressing data.
           
 
 ### Cache
