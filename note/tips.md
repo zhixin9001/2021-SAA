@@ -1,5 +1,6 @@
 
 ### S3
+- an object storage service, not a network file system
 - strong read-after-write consistency
 - prefix
     - Amazon S3 automatically scales to high request rates.
@@ -378,5 +379,12 @@
 
 - AWS Cost Explorer helps you identify under-utilized EC2 instances that may be downsized on an instance by instance basis within the same instance family, and also understand the potential impact on your AWS bill by taking into account your Reserved Instances and Savings Plans.
 - AWS Compute Optimizer recommends optimal AWS Compute resources for your workloads to reduce costs and improve performance by using machine learning to analyze historical utilization metrics. Compute Optimizer helps you choose the optimal Amazon EC2 instance types, including those that are part of an Amazon EC2 Auto Scaling group, based on your utilization data.
+- AWS Organizations
+    - define central configurations and resource sharing across accounts
+    - can automate account creation, create groups of accounts and apply policies for these groups
+    - Migrate accounts accross AWS Organizations (must have root or IAM access to both the member and master accounts)
+        1. Remove the member account from the old organization 
+        2. Send an invite to the member account from the new Organization 
+        3. Accept the invite to the new organization from the member account
 
 
