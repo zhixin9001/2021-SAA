@@ -51,6 +51,7 @@
         - geolocation
         - geoproximity
         - latency
+            - Use latency based routing when you have resources in multiple AWS Regions and you want to route traffic to the region that provides the lowest latency
         - weighted
         - multivalue answer
     - DNS cache
@@ -351,6 +352,7 @@
 ### Amazon Kinesis
 - Amazon Kinesis Data Streams
     - real-time processing of streaming big data, continuously, scalable, gigabytes
+    - need to provision enough shards ahead of time, so it requires manual administration of shards
     - Kinesis Data Streams Fanout
         - By default, the 2MB/second/shard output is shared between all of the applications consuming data from the stream
         - With enhanced fan-out developers can register stream consumers to use enhanced fan-out and receive their own 2MB/second pipe of read throughput per shard
