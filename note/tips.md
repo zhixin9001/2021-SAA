@@ -22,14 +22,14 @@
 - types
     - Standard, no The minimum storage duration charge, and the other types at least 30days, no retrive fee
         - pay for used,  the pricing is $0.023 per GB per month. 
+    - Standard-Infrequent Access (S3 Standard-IA),  costs more than S3 One Zone-IA, less availability
     - Intelligent-Tiering, automatic moving objects between four access tiers when access patterns change, cost savings, no retrive fee
         - two low latency access tiers optimized for frequent and infrequent access, 
         - and two optional archive access tiers designed for asynchronous access that are optimized for rare access.
         - Frequent Access tier -> 30 days, Infrequent Access tier -> 90 days, (if activated) Archive Access tier -> 180 days, Deep Archive Access tier
     - One Zone-Infrequent Access (S3 One Zone-IA), Infrequent but requires rapid access when needed. costs 20% less than S3 Standard-IA
         - the minimum storage duration is 30 days before you can transition objects from S3 Standard to S3 One Zone-IA or S3 Standard-IA
-    - Standard-Infrequent Access (S3 Standard-IA),  costs more than S3 One Zone-IA, less availability
-    - S3 Glacier, for data archiving, cheap, can upload objects directly or use lifecycle, Configurable retrieval times, from minutes to hours
+    - S3 Glacier, for data archiving, cheap, can upload objects directly or use lifecycle, Configurable retrieval times, from minutes to hours, lifecycle supports 1 day
     - S3 Glacier Deep Archive, lowest cost, Retrieval time within 12 hours
 - retention
     - You can place a retention period on an object version either explicitly or through a bucket default setting. 
@@ -389,5 +389,16 @@
         1. Remove the member account from the old organization 
         2. Send an invite to the member account from the new Organization 
         3. Accept the invite to the new organization from the member account
+- AWS CloudHSM is a cloud-based hardware security module (HSM) that enables you to easily generate and use your encryption keys on the AWS Cloud. 
+    - auto rotate
+- AWS Systems Manager Parameter Store (aka SSM Parameter Store) provides secure, hierarchical storage for configuration data management and secrets management
+
+
+
+
+
+
+
+
 
 
