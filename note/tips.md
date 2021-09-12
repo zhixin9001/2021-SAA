@@ -280,6 +280,10 @@
     -  Spot Fleet
         - selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet.
 -  hibernate an instance
+-  Connection Draining(下水道)
+    - enables the load balancer to complete in-flight requests made to instances that are de-registering or unhealthy. The maximum timeout value can be set between 1 and 3,600 seconds (the default is 300 seconds).
+- Idle Timeout
+    -   
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
