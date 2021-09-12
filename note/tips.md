@@ -44,17 +44,24 @@
     - throttles requests to your API using the token bucket algorithm
 - Amazon Gateway Endpoint, specify as a target for a route in your route table for traffic destined
 
-- route 53
-    - route policy
-        - simple
-        - failover
-        - geolocation
-        - geoproximity
-        - latency
-            - Use latency based routing when you have resources in multiple AWS Regions and you want to route traffic to the region that provides the lowest latency
-        - weighted
-        - multivalue answer
-    - DNS cache
+### route 53
+- route policy
+    - simple
+    - failover
+    - geolocation
+    - geoproximity
+    - latency
+        - Use latency based routing when you have resources in multiple AWS Regions and you want to route traffic to the region that provides the lowest latency
+    - weighted
+    - multivalue answer
+- DNS cache
+- rues
+    - CNAME record, charged
+        - an alias record can only redirect queries to selected AWS resources such as S3 buckets, CloudFront distributions, and another record in the same Route 53 hosted zone; however a CNAME record can redirect DNS queries to any DNS record
+    - Alias record, no charge, 
+        - can create an alias record at the top node of a DNS namespace, also known as the zone apex, however, you cannot create a CNAME record for the top node of the DNS namespace, 
+    - MX record, specifies the names of your mail servers
+    - NS record, identifies the name servers for the hosted zones
 
 ### Load Balancer
 - Application Load Balancer
@@ -231,6 +238,7 @@
     - five times faster than standard MySQL databases and three times faster than standard PostgreSQL databases
 - Amazon Aurora Serverless
     - on-demand, auto-scaling configuration for Amazon Aurora
+    - auto managed
 - Neptune
     - a fast, reliable, fully managed graph database service
 
