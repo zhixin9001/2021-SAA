@@ -55,7 +55,7 @@
     - weighted
     - multivalue answer
 - DNS cache
-- rues
+- rules
     - CNAME record, charged
         - an alias record can only redirect queries to selected AWS resources such as S3 buckets, CloudFront distributions, and another record in the same Route 53 hosted zone; however a CNAME record can redirect DNS queries to any DNS record
     - Alias record, no charge, 
@@ -398,6 +398,7 @@
     - When a Kinesis data stream is configured as the source of a Firehose delivery stream, Firehose’s PutRecord and PutRecordBatch operations are disabled, data can only come from the Kinesis data stream
 - Kinesis Agent
     - stand-alone Java software application that offers an easy way to collect and send data to Kinesis Data Streams or Kinesis Firehose
+- kinesis vs SQS, real-time, prefer kinesis
 ### Others
 - AWS Glue
     - a fully managed extract, transform, and load (ETL) service
@@ -431,7 +432,10 @@
     - resource performance monitoring, events, and alerts; think CloudWatch.
     - account-specific activity and audit; think CloudTrail.
     - resource-specific history, audit, and compliance; think Config.
-
+- AWS DataSync
+    - an online data transfer service that simplifies, automates, and accelerates copying large amounts of data to and from AWS storage services over the internet or AWS Direct Connect.
+    - natively integrated with Amazon S3, Amazon EFS, Amazon FSx for Windows File Server, Amazon CloudWatch, and AWS CloudTrail, which provides seamless and secure access to your storage services, as well as detailed monitoring of the transfer.
+- AWS Transfer Family, provides fully managed support for file transfers directly into and out of Amazon S3 and Amazon EFS
 
 
 
