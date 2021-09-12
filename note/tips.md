@@ -221,12 +221,16 @@
     - You can only enable encryption for an Amazon RDS DB instance when you create it
         - can create a snapshot of your DB instance, and then create an encrypted copy of that snapshot
     - replicating data，no charge for same region
+    - not fully managed
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
         - auto-scales up to 64TB per database instance, up to 15 low-latency read replicas, across 3 az, a priority tier (0-15), same priority -> largest in size
     - MySQL and PostgreSQL-compatible
     - Aurora multi-master DB cluster, all DB instances can perform write operations. There isn't any failover
+    - five times faster than standard MySQL databases and three times faster than standard PostgreSQL databases
+- Amazon Aurora Serverless
+    - on-demand, auto-scaling configuration for Amazon Aurora
 - Neptune
     - a fast, reliable, fully managed graph database service
 
