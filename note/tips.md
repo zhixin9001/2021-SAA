@@ -96,8 +96,10 @@
         - AWS Site-to-Site VPN and AWS Direct Connect can be invloved
     - VPC security groups, to control the network traffic to and from your file system
 - transfer speed
-    - AWS Global Accelerator, improve the performance, a good fit for non-HTTP use cases, Http also supported
+    - AWS Global Accelerator, improve the performance, a good fit for non-HTTP use cases, 
+    also supported
         - bule/green 
+        - 聚合, Network Load Balancers, Application Load Balancers, Elastic IPs, and EC2 Instances, without making user-facing changes
     - Amazon CloudFront, CDN(content delivery network)
     - diff: AWS Global Accelerator & CloudFront both use the AWS global network and its edge locations around the world. CloudFront improves performance for both cacheable content and dynamic content (such as API acceleration and dynamic site delivery), while Global Accelerator improves performance for a wide range of applications over TCP or UDP. 
 - VPC console wizard
@@ -299,6 +301,8 @@
 - AWS WAF is a web application firewall service, Geo match conditions
 - macie, private data
 - AWS Shield， ddos
+- Service control policies (SCPs) 
+    - can be used to manage your organization. SCPs offer central control over the maximum available permissions for all accounts in your organization, allowing you to ensure your accounts stay within your organization’s access control guidelines.
 
 ### SQS
 - fifo, 300/min, batch 3000, 10 requests max
