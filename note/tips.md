@@ -58,10 +58,13 @@
 - rules
     - CNAME record, charged
         - an alias record can only redirect queries to selected AWS resources such as S3 buckets, CloudFront distributions, and another record in the same Route 53 hosted zone; however a CNAME record can redirect DNS queries to any DNS record
+        - cannot create a CNAME record for the top node of a DNS namespace, also known as the zone apex. For example, if you register the DNS name example.com, the zone apex is example.com. You cannot create a CNAME record for example.com, but you can create CNAME records for www.example.com
     - Alias record, no charge, 
         - can create an alias record at the top node of a DNS namespace, also known as the zone apex, however, you cannot create a CNAME record for the top node of the DNS namespace, 
     - MX record, specifies the names of your mail servers
     - NS record, identifies the name servers for the hosted zones
+    - A record - Used to point a domain or subdomain to an IP address.
+    - PTR record - A Pointer (PTR) record resolves an IP address to a fully-qualified domain name (FQDN) as an opposite to what A record does
 
 ### Load Balancer
 - Application Load Balancer
