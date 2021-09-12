@@ -427,7 +427,10 @@
 - AWS CloudHSM is a cloud-based hardware security module (HSM) that enables you to easily generate and use your encryption keys on the AWS Cloud. 
     - auto rotate
 - AWS Systems Manager Parameter Store (aka SSM Parameter Store) provides secure, hierarchical storage for configuration data management and secrets management
-
+- AWS Config vs CloudTrail
+    - resource performance monitoring, events, and alerts; think CloudWatch.
+    - account-specific activity and audit; think CloudTrail.
+    - resource-specific history, audit, and compliance; think Config.
 
 
 
