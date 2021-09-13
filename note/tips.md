@@ -295,7 +295,7 @@
 -  Connection Draining(下水道)
     - enables the load balancer to complete in-flight requests made to instances that are de-registering or unhealthy. The maximum timeout value can be set between 1 and 3,600 seconds (the default is 300 seconds).
 - Idle Timeout
-    -   
+- Launch Config Tenancy + VPC Tenancy: dedicated > default
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
@@ -415,6 +415,14 @@
 - Kinesis Agent
     - stand-alone Java software application that offers an easy way to collect and send data to Kinesis Data Streams or Kinesis Firehose
 - kinesis vs SQS, real-time, prefer kinesis
+
+### Cloud Formation
+- Cloudformation template
+    - a blueprint for a stack
+- CloudFormation stack
+    - a set of AWS resources that are created and managed as a single unit when AWS CloudFormation instantiates a template
+- CloudFormation StackSet
+    - extends the functionality of stacks by enabling maintain stacks across multiple accounts and regions of an "AWS Organization"
 ### Others
 - AWS Glue
     - a fully managed extract, transform, and load (ETL) service
