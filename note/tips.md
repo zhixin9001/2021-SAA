@@ -203,7 +203,7 @@
     - original Snowball device had 80TB of storage space.
     - You can't directly copy data from Snowball Edge devices into AWS Glacier.
 - AWS Storage Gateway, cache, on premises access to virtually unlimited cloud storage
-    - File Gateway, s3, offers SMB or NFS-based access to data in Amazon S3 with local caching. 
+    - File Gateway, s3, offers Server Message Block (SMB) or NFS-based access to data in Amazon S3 with local caching. 
     - volume gw, cloud-based iSCSI block storage volumes 
     - tape gw, moving tape backups to the cloud. not nfs interface
     - Supported: Create a lifecycle policy to immediately move data to Glacier Deep Archive
@@ -267,11 +267,11 @@
     - Spread placement groups, can span multiple az in the same Region. You can have a maximum of 7 running instances per Availability Zone per group. suitable for mixing instance types or launching instances over time.
 - volume types
     - SSD-backed volumes, frequent read/write operations with small I/O size, IOPS(每秒的讀寫次數), 
-        - General Purpose SSD — gp2/3, Provides a balance of price and performance. We recommend these volumes for most workloads.
-        - Provisioned IOPS SSD — io1/io2/io2 Block Express ‡, Provides high performance for mission-critical, low-latency, or high-throughput workloads.
+        - General Purpose SSD — gp2/3, Provides a balance of price and performance. We recommend these volumes for most workloads. IOPS/Volume of 16,000.
+        - Provisioned IOPS SSD — io1/io2/io2 Block Express ‡, Provides high performance for mission-critical, low-latency, or high-throughput workloads. maximum of 64,000 IOPS and provide up to 1,000 MB/s of throughput per volume.
     - HDD-backed volumes, throughput (measured in MiB/s) is a better performance measure than IOPS. CANNOT be used as a boot volume
-        - Throughput Optimized HDD, st1 — A low-cost HDD designed for frequently accessed, throughput-intensive workloads.
-        - Cold HDD, sc1 — The lowest-cost HDD design for less frequently accessed workloads.
+        - Throughput Optimized HDD, st1 — A low-cost HDD designed for frequently accessed, throughput-intensive workloads. max IOPS/Volume of 500
+        - Cold HDD, sc1 — The lowest-cost HDD design for less frequently accessed workloads. max IOPS/Volume of 250.
 - Nitro System, a collection of AWS-built hardware and software components that enable high performance, high availability, and high security.
 - security group
 - user data 
@@ -300,6 +300,7 @@
     - Elastic Network Interface (ENI) is a logical networking component in a VPC that represents a virtual network card. You can create a network interface, attach it to an instance, detach it from an instance, and attach it to another instance. The ENI is the simplest networking component 
     - Elastic Network Adapter (ENA) devices support enhanced networking via single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities. 
     - Elastic IP address is a public static IPv4 address associated with your AWS account. which is reachable from the internet. It is not a networking device
+    - Elastic Fabric Adapter (EFA) is a network device that you can attach to your Amazon EC2 instance to accelerate High Performance Computing (HPC) and machine learning applications
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
@@ -464,7 +465,7 @@
     - an online data transfer service that simplifies, automates, and accelerates copying large amounts of data to and from AWS storage services over the internet or AWS Direct Connect.
     - natively integrated with Amazon S3, Amazon EFS, Amazon FSx for Windows File Server, Amazon CloudWatch, and AWS CloudTrail, which provides seamless and secure access to your storage services, as well as detailed monitoring of the transfer.
 - AWS Transfer Family, provides fully managed support for file transfers directly into and out of Amazon S3 and Amazon EFS
-- Elastic Fabric Adapter (EFA) is a network device that you can attach to your Amazon EC2 instance to accelerate High Performance Computing (HPC) and machine learning applications
+
 
 
 
