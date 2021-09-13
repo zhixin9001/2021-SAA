@@ -204,7 +204,9 @@
     - You can't directly copy data from Snowball Edge devices into AWS Glacier.
 - AWS Storage Gateway, cache, on premises access to virtually unlimited cloud storage
     - File Gateway, s3, offers Server Message Block (SMB) or NFS-based access to data in Amazon S3 with local caching. 
-    - volume gw, cloud-based iSCSI block storage volumes 
+    - volume gw, cloud-based iSCSI block storage volumes, iSCSI block
+        - Cached Volume - stores the full volume in its Amazon S3 service bucket, and just the recently accessed data is retained in the gateway’s local cache for low-latency access.
+        - Stored Volumes, your entire data volume is available locally in the gateway, for fast read access, while also asynchronously getting backed up to Amazon S3
     - tape gw, moving tape backups to the cloud. not nfs interface
     - Supported: Create a lifecycle policy to immediately move data to Glacier Deep Archive
     - Types
@@ -326,6 +328,10 @@
 - can't convert an existing standard queue into a FIFO queue.
 - Delay queues let you postpone the delivery of new messages to a queue for several seconds, invasible, 0-15min
 - Visibility timeout is a period during which Amazon SQS prevents other consumers from receiving and processing a given message, default 30s, 0-12h
+- short polling and long polling(投票)
+    - short polling, default, SQS sends the response right away, even if the query found no messages
+    - long polling, SQS sends a response after it collects at least one available message, up to the maximum number of messages specified in the request. Amazon SQS sends an empty response only if the polling wait time expires.
+        - set 'receiveMessage'
 ### SNS
 - pay only for the compute time that you consume
 - FIFO, can only be subscribed by a SQS FIFO
