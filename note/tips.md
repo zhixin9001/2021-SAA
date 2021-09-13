@@ -45,6 +45,7 @@
 - Amazon Gateway Endpoint, specify as a target for a route in your route table for traffic destined
 
 ### route 53
+- DNS
 - route policy
     - simple
     - failover
@@ -65,6 +66,9 @@
     - NS record, identifies the name servers for the hosted zones
     - A record - Used to point a domain or subdomain to an IP address.
     - PTR record - A Pointer (PTR) record resolves an IP address to a fully-qualified domain name (FQDN) as an opposite to what A record does
+- on-promise
+    - Create an inbound endpoint on Route 53 Resolver and then DNS resolvers on the on-premises network can forward DNS queries to Route 53 Resolver via this endpoint
+    - Create an outbound endpoint on Route 53 Resolver and then Route 53 Resolver can conditionally forward queries to resolvers on the on-premises network via this endpoint
 
 ### Load Balancer
 - Application Load Balancer
@@ -312,6 +316,8 @@
     - .fifo suffix
     - GroupID，extend consumer, keep order in group
 - can't convert an existing standard queue into a FIFO queue.
+- Delay queues let you postpone the delivery of new messages to a queue for several seconds, invasible, 0-15min
+- Visibility timeout is a period during which Amazon SQS prevents other consumers from receiving and processing a given message, default 30s, 0-12h
 ### SNS
 - pay only for the compute time that you consume
 - FIFO, can only be subscribed by a SQS FIFO
