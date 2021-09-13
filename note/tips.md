@@ -122,6 +122,9 @@
     - NAT gateway, you are charged for each hour that your NAT gateway is available and each Gigabyte of data that it processes
     - NAT instance, charged as EC2 instance
     - both not support ipv6
+    - both could used for downloading from internet
+- Internet Gateway, cannot be used directly with a private subnet
+- Egress-only internet gateway, an Internet Gateway that supports IPv6 traffic
 - AWS Resource Access Manager (RAM)
     - no additional charge. 
     - a service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization. 
