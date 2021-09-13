@@ -296,6 +296,10 @@
     - enables the load balancer to complete in-flight requests made to instances that are de-registering or unhealthy. The maximum timeout value can be set between 1 and 3,600 seconds (the default is 300 seconds).
 - Idle Timeout
 - Launch Config Tenancy + VPC Tenancy: dedicated > default
+- networking components
+    - Elastic Network Interface (ENI) is a logical networking component in a VPC that represents a virtual network card. You can create a network interface, attach it to an instance, detach it from an instance, and attach it to another instance. The ENI is the simplest networking component 
+    - Elastic Network Adapter (ENA) devices support enhanced networking via single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities. 
+    - Elastic IP address is a public static IPv4 address associated with your AWS account. which is reachable from the internet. It is not a networking device
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
@@ -460,6 +464,10 @@
     - an online data transfer service that simplifies, automates, and accelerates copying large amounts of data to and from AWS storage services over the internet or AWS Direct Connect.
     - natively integrated with Amazon S3, Amazon EFS, Amazon FSx for Windows File Server, Amazon CloudWatch, and AWS CloudTrail, which provides seamless and secure access to your storage services, as well as detailed monitoring of the transfer.
 - AWS Transfer Family, provides fully managed support for file transfers directly into and out of Amazon S3 and Amazon EFS
+- Elastic Fabric Adapter (EFA) is a network device that you can attach to your Amazon EC2 instance to accelerate High Performance Computing (HPC) and machine learning applications
+
+
+
 
 
 
