@@ -332,6 +332,10 @@
     - short polling, default, SQS sends the response right away, even if the query found no messages
     - long polling, SQS sends a response after it collects at least one available message, up to the maximum number of messages specified in the request. Amazon SQS sends an empty response only if the polling wait time expires.
         - set 'receiveMessage'
+        - save cost
+- Delay and timer
+    - delay applies to all messages
+    - timer = one single delay when sending
 ### SNS
 - pay only for the compute time that you consume
 - FIFO, can only be subscribed by a SQS FIFO
@@ -471,7 +475,9 @@
     - an online data transfer service that simplifies, automates, and accelerates copying large amounts of data to and from AWS storage services over the internet or AWS Direct Connect.
     - natively integrated with Amazon S3, Amazon EFS, Amazon FSx for Windows File Server, Amazon CloudWatch, and AWS CloudTrail, which provides seamless and secure access to your storage services, as well as detailed monitoring of the transfer.
 - AWS Transfer Family, provides fully managed support for file transfers directly into and out of Amazon S3 and Amazon EFS
-
+- DB migrate
+    - AWS Schema Conversion Tool + AWS Database Migration Service
+    - Basic Schema Copy, for test migration, can't migrate secondary indexes, foreign keys or stored procedures
 
 
 
