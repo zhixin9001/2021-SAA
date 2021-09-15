@@ -79,6 +79,7 @@
     - provides basic load balancing across multiple Amazon EC2 instances
 - Deregistration, 
     - By default, 300 seconds
+- cross-zone load balancing, az as min unit -> instance as min unit
 
 ### Network
 - types
@@ -168,6 +169,7 @@
     - custom health checks, when unhealthy, ASG will terminate
 - default termination policy
     - on-demand/spot instance -> old launch config -> old launch template -> close to next billing
+- if more than one policy matched, the policy that provides the largest capacity will be selected
 
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
@@ -283,6 +285,11 @@
     - only during the boot cycle when you first launch an instance
 - instance purching options
     - Spot Instance, an unused EC2 instance that is available for less than the On-Demand price, interrupted
+        - spot request: includes the desired number of instances, the instance type, the Availability Zone, and the maximum price...
+        - 2 types: one-time, persistent
+        - if persistent, request is opened again when Amazon EC2 interrupts a Spot Instance or if you stop a Spot Instance
+        - spot blocks: a duration during which instance are not interrupted, 1-6h, not supported after 2021/7/1
+        - if spot request has associated running spot instance, canceling the request does not terminate the instance
     - On-Demand Instances, you pay for compute capacity by the second with no long-term commitments
     - Reserved Instances provide you with significant savings on your Amazon EC2 costs compared to On-Demand Instance pricing. Reserved Instances are not physical instances
     - Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use, license
@@ -303,6 +310,9 @@
     - Elastic Network Adapter (ENA) devices support enhanced networking via single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities. 
     - Elastic IP address is a public static IPv4 address associated with your AWS account. which is reachable from the internet. It is not a networking device
     - Elastic Fabric Adapter (EFA) is a network device that you can attach to your Amazon EC2 instance to accelerate High Performance Computing (HPC) and machine learning applications
+- Revover
+    - A recovered instance is identical to the original instance, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata
+    - If your instance has a public IPv4 address, it retains the public IPv4 address after recovery
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
