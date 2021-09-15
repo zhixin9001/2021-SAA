@@ -139,6 +139,7 @@
 - Security group rules are always permissive; you can't create rules that deny access.
 - Security Groups are stateful, so allowing inbound traffic to the necessary ports enables the connection. 
 - Network ACLs are stateless, so you must allow both inbound and outbound traffic
+- inbound rule: ipv4/6 address/block, another security group
 
 ### Auto Scaling group
 - policy
@@ -298,6 +299,7 @@
         - Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account.
         -  However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances.
         -  single-tenant hardware
+        -  can convert between: dedicated instance <-> dedicated host, they both can't convert with default
     -  Spot Fleet
         - selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet.
 -  hibernate an instance
@@ -495,6 +497,20 @@
 - AD Connector 
     - if you only need to allow your on-premises users to log in to AWS applications and services with their Active Directory credentials. 
     - AD Connector simply connects your existing on-premises Active Directory to AWS.
+- AWS Step Functions 
+    - coordinate and orchestrate multiple AWS services such as AWS Lambda and AWS Glue into serverless workflows. 
+    - Workflows are made up of a series of steps, with the output of one step acting as input into the next. 
+    - A Step Function automatically triggers and tracks each step, and retries when there are errors, so your application executes in order and as expected. 
+- Amazon Simple Workflow Service (SWF) 
+    - helps developers build, run, and scale background jobs that have parallel or sequential steps. 
+    - To coordinate the application execution across workers, you write a program called the decider in your choice of programming language. 
+- AWS Batch
+    - run batch job
+    - dynamically provisions the optimal quantity and type of compute resources (e.g., CPU or memory optimized instances) based on the volume and specific resource requirements of the batch jobs submitted.
+- AWS Elastic Beanstalk
+    - an easy-to-use service for deploying and scaling web applications and services developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker on familiar servers such as Apache, Nginx, Passenger, and IIS. 
+    - Simply upload your code and Elastic Beanstalk automatically handles the deployment, from capacity provisioning, load balancing, auto-scaling to application health monitoring.
+
 
 
 
