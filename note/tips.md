@@ -488,8 +488,13 @@
 - DB migrate
     - AWS Schema Conversion Tool + AWS Database Migration Service
     - Basic Schema Copy, for test migration, can't migrate secondary indexes, foreign keys or stored procedures
-
-
+- AWS Managed Microsoft AD
+    - run directory-aware workloads in the AWS Cloud such as SQL Server-based applications. 
+    - You can also configure a trust relationship between AWS Managed Microsoft AD in the AWS Cloud and your existing on-premises Microsoft Active Directory, 
+    - providing users and groups with access to resources in either domain, using single sign-on (SSO).
+- AD Connector 
+    - if you only need to allow your on-premises users to log in to AWS applications and services with their Active Directory credentials. 
+    - AD Connector simply connects your existing on-premises Active Directory to AWS.
 
 
 
