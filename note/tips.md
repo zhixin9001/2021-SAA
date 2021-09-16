@@ -264,6 +264,9 @@
     - replicate your data with high availability and consolidate databases into a petabyte-scale data warehouse by streaming data to Amazon Redshift and Amazon S3.
     - supports Amazon S3 as the source and Kinesis as the target
 - AWS Schema Conversion Tool to convert the source schema and code to match that of the target database
+- DocumentDB is a fast, scalable, highly available, and fully managed document database service that supports MongoDB workloads
+    - no cache
+
 
 ### EC2 
 - Placement groups
@@ -348,6 +351,8 @@
 - Delay and timer
     - delay applies to all messages
     - timer = one single delay when sending
+- Amazon EventBridge
+    - decouple the complex architecture - This event-based service is extremely useful for connecting non-AWS SaaS (Software as a Service) services to AWS services
 ### SNS
 - pay only for the compute time that you consume
 - FIFO, can only be subscribed by a SQS FIFO
