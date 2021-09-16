@@ -10,6 +10,7 @@
     - you pay only for transfers that are accelerated.
     - There are no S3 data transfer charges when data is transferred in from the internet.
     - takes advantage of Amazon CloudFront’s globally distributed edge locations.
+    - if > 1G, prefer this than cloudfront
 - cloudfront
     - By design, delivering data out of CloudFront can be more cost-effective than delivering it from S3 directly to your users.
     - georestriction
@@ -436,6 +437,8 @@
 - Amazon Kinesis Data Streams
     - real-time processing of streaming big data, continuously, scalable, gigabytes
     - need to provision enough shards ahead of time, so it requires manual administration of shards
+    - is recommended when you need the ability to consume records in the same order a few hours later.
+    - stores data for up to 365 days, you can run the audit application up to 7 days behind the billing application.
     - Kinesis Data Streams Fanout
         - By default, the 2MB/second/shard output is shared between all of the applications consuming data from the stream
         - With enhanced fan-out developers can register stream consumers to use enhanced fan-out and receive their own 2MB/second pipe of read throughput per shard
@@ -447,6 +450,9 @@
 - Kinesis Agent
     - stand-alone Java software application that offers an easy way to collect and send data to Kinesis Data Streams or Kinesis Firehose
 - kinesis vs SQS, real-time, prefer kinesis
+- Amazon Kinesis Data Analytics 
+    - is the easiest way to analyze streaming data in real-time
+    - is used to build SQL queries and sophisticated Java applications
 
 ### Cloud Formation
 - Cloudformation template
