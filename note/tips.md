@@ -94,7 +94,9 @@
         -  acts as a hub
     - VPC peering, 一对一，没有传递性
     - AWS PrivateLink, establishes private connectivity between virtual private clouds (VPC) and services hosted on AWS or on-premises
-        - VPC endpoint，enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+    - VPC endpoint，enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+        - Interface: provisions an ENI (private IP address) as an entry point (must attach security group) – most AWS services
+        - Gateway: provisions a target and must be used in a route table – S3 and DynamoDB
     - VPC sharing
         - allows multiple AWS accounts 
         - shares subnets
