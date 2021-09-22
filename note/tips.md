@@ -14,6 +14,7 @@
 - cloudfront
     - By design, delivering data out of CloudFront can be more cost-effective than delivering it from S3 directly to your users.
     - georestriction
+    - select this, if not upload, but download
 - version
     - Once you version-enable a bucket, it can never return to an unversioned state. 
     - recover objects from accidental deletion or overwrite, delete marker
@@ -244,6 +245,7 @@
     - designed for large scale data set storage and analysis.
     - Redshift Spectrum(光谱), query and retrieve structured and semistructured data from files in Amazon S3 without having to load the data into Amazon Redshift tables.
     - When you provision an Amazon Redshift cluster, it is locked down by default so nobody has access to it, should config security group
+    - Enable Amazon Redshift Enhanced VPC Routing to let all traffic from and to the Redshift cluster does not go through the Internet.
 - Elasticsearch
     - full-text search engine, with an HTTP web interface, schema-free JSON documents
 - RDS (Relational Database Service)
@@ -348,6 +350,8 @@
 - AWS Shield， ddos
 - Service control policies (SCPs) 
     - can be used to manage your organization. SCPs offer central control over the maximum available permissions for all accounts in your organization, allowing you to ensure your accounts stay within your organization’s access control guidelines.
+- AWS Trusted Advisor
+    - provides recommendations that help you follow AWS best practices. Trusted Advisor evaluates your account by using checks. These checks identify ways to optimize your AWS infrastructure, improve security and performance, reduce costs, and monitor service quotas.
 
 ### SQS
 - fifo, 300/min, batch 3000, 10 requests max
@@ -537,8 +541,8 @@
     - CloudWatch Events can be used to monitor the state change of EC2 Instances
 - The best and most secure option is to place the database in a private subnet
 - 多选，看清需要选几个，别漏了
-
-
+- disaster recovery always looks at ensuring resources are created in another region
+- AWS CodeBuild is a fully managed build service in the cloud. CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy.
 - 1
     - 26
     - 
