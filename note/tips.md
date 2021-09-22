@@ -32,12 +32,14 @@
         - the minimum storage duration is 30 days before you can transition objects from S3 Standard to S3 One Zone-IA or S3 Standard-IA
     - S3 Glacier, for data archiving, cheap, can upload objects directly or use lifecycle, Configurable retrieval times, from minutes to hours, lifecycle supports 1 day
     - S3 Glacier Deep Archive, lowest cost, Retrieval time within 12 hours
+    - lifecycle type: Transition & Expiration
 - retention
     - You can place a retention period on an object version either explicitly or through a bucket default setting. 
     - When you use bucket default settings, you don't specify a Retain Until Date. Instead, you specify a duration, in either days or years
     - Different versions of a single object can have different retention modes and periods.
 - aws S3 sync command
 - Each uploaded file automatically gets a public URL, which can be used to download the file at a later 
+- use Pre-Signed URLs to upload objects to S3
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -128,6 +130,7 @@
     - NAT instance, charged as EC2 instance
     - both not support ipv6
     - both could used for downloading from internet
+    - If you have resources in multiple Availability Zones and they share one NAT Gateway, but if the NAT Gateway’s Availability Zone is down, resources in the other Availability Zones lose internet access
 - Internet Gateway, cannot be used directly with a private subnet
 - Egress-only internet gateway, an Internet Gateway that supports IPv6 traffic
 - AWS Resource Access Manager (RAM)
@@ -240,6 +243,7 @@
     - a fully-managed petabyte-scale cloud-based data warehouse 
     - designed for large scale data set storage and analysis.
     - Redshift Spectrum(光谱), query and retrieve structured and semistructured data from files in Amazon S3 without having to load the data into Amazon Redshift tables.
+    - When you provision an Amazon Redshift cluster, it is locked down by default so nobody has access to it, should config security group
 - Elasticsearch
     - full-text search engine, with an HTTP web interface, schema-free JSON documents
 - RDS (Relational Database Service)
@@ -285,7 +289,7 @@
 - volume types
     - SSD-backed volumes, frequent read/write operations with small I/O size, IOPS(每秒的讀寫次數), 
         - General Purpose SSD — gp2/3, Provides a balance of price and performance. We recommend these volumes for most workloads. IOPS/Volume of 16,000.
-        - Provisioned IOPS SSD — io1/io2/io2 Block Express ‡, Provides high performance for mission-critical, low-latency, or high-throughput workloads. maximum of 64,000 IOPS and provide up to 1,000 MB/s of throughput per volume.
+        - Provisioned IOPS SSD — io1/io2/io2 Block Express ‡, Provides high performance for mission-critical, low-latency, or high-throughput workloads. io1/io2 maximum of 64,000 IOPS and provide up to 1,000 MB/s of throughput per volume. io2 Block Express ‡ has 4*64000=256000, and 4000mb/s
     - HDD-backed volumes, throughput (measured in MiB/s) is a better performance measure than IOPS. CANNOT be used as a boot volume
         - Throughput Optimized HDD, st1 — A low-cost HDD designed for frequently accessed, throughput-intensive workloads. max IOPS/Volume of 500
         - Cold HDD, sc1 — The lowest-cost HDD design for less frequently accessed workloads. max IOPS/Volume of 250.
