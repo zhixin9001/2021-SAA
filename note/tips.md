@@ -37,6 +37,7 @@
     - When you use bucket default settings, you don't specify a Retain Until Date. Instead, you specify a duration, in either days or years
     - Different versions of a single object can have different retention modes and periods.
 - aws S3 sync command
+- Each uploaded file automatically gets a public URL, which can be used to download the file at a later 
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -232,6 +233,9 @@
 - DynamoDB 
     - a key-value, document database, multi-region, built-in security, backup and restore
     - DynamoDB Accelerator (DAX), a fully managed, highly available, in-memory cache, 10x performance
+    - max item size 400kb
+    - also can be used as session store, has open source libs
+    - DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records
 - Redshift
     - a fully-managed petabyte-scale cloud-based data warehouse 
     - designed for large scale data set storage and analysis.
@@ -242,13 +246,14 @@
     - makes it easy to set up, operate, and scale a relational database in the cloud.
     - Amazon RDS Multi-AZ, at least 2 az, non-aurora: synchronously replicates, aurora: asynchronous
         - availablity 
-    - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server database engines asynchronous replication
+    - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server databae engines asynchronous replication
         - provide enhanced performance, scalability, and durability, not availablity 
     - if master database is encrypted, read replicas are encrypted
     - You can only enable encryption for an Amazon RDS DB instance when you create it
         - can create a snapshot of your DB instance, and then create an encrypted copy of that snapshot
     - replicating data，no charge for same region
     - not fully managed
+    - max 16tb
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
@@ -256,6 +261,7 @@
     - MySQL and PostgreSQL-compatible
     - Aurora multi-master DB cluster, all DB instances can perform write operations. There isn't any failover
     - five times faster than standard MySQL databases and three times faster than standard PostgreSQL databases
+    - max 64 tb
 - Amazon Aurora Serverless
     - on-demand, auto-scaling configuration for Amazon Aurora
     - auto managed
@@ -523,10 +529,10 @@
 - AWS Elastic Beanstalk
     - an easy-to-use service for deploying and scaling web applications and services developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker on familiar servers such as Apache, Nginx, Passenger, and IIS. 
     - Simply upload your code and Elastic Beanstalk automatically handles the deployment, from capacity provisioning, load balancing, auto-scaling to application health monitoring.
-
-
-
-
+- Cloudwatch
+    - CloudWatch Events can be used to monitor the state change of EC2 Instances
+- The best and most secure option is to place the database in a private subnet
+- 多选，看清需要选几个，别漏了
 
 
 
