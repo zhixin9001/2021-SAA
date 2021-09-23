@@ -336,6 +336,7 @@
 - Revover
     - A recovered instance is identical to the original instance, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata
     - If your instance has a public IPv4 address, it retains the public IPv4 address after recovery
+- You can easily add tags to define which instances are production and which ones are development instances. These tags can then be used while controlling access via an IAM Policy
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
@@ -373,6 +374,7 @@
     - timer = one single delay when sending
 - Amazon EventBridge
     - decouple the complex architecture - This event-based service is extremely useful for connecting non-AWS SaaS (Software as a Service) services to AWS services
+- Use two SQS queues, one for high priority messages, the other of r default priority. Transformation instances first poll the high priority queue; if there is no message, they poll the default priority queue. 
 ### SNS
 - pay only for the compute time that you consume
 - FIFO, can only be subscribed by a SQS FIFO
@@ -451,6 +453,8 @@
 - automation tools 
 - chef
 - puppet
+- have different stacks for the Development and Production environments. 
+- With OpsWorks Stacks, you can model your application as a stack containing different layers, such as load balancing, database,and application server.
 
 ### Amazon Kinesis
 - Amazon Kinesis Data Streams
@@ -547,10 +551,13 @@
 - disaster recovery always looks at ensuring resources are created in another region
 - AWS CodeBuild is a fully managed build service in the cloud. CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy.
 - Elastic Beanstalk supports the deployment of web applications from Docker containers
+- Amazon SES, Simple email service, is an email platform that provides an easy, cost-effective way for you to send and receive email using your own email addresses and domains.
+- VM Import/Export enables customers to import Virtual Machine (VM) images in order to create Amazon EC2 instances
 - 1
     - 26
 - 2
     - 11
+    - 32
 
 
 
