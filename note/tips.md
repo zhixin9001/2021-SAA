@@ -66,7 +66,8 @@
         - an alias record can only redirect queries to selected AWS resources such as S3 buckets, CloudFront distributions, and another record in the same Route 53 hosted zone; however a CNAME record can redirect DNS queries to any DNS record
         - cannot create a CNAME record for the top node of a DNS namespace, also known as the zone apex. For example, if you register the DNS name example.com, the zone apex is example.com. You cannot create a CNAME record for example.com, but you can create CNAME records for www.example.com
     - Alias record, no charge, 
-        - can create an alias record at the top node of a DNS namespace, also known as the zone apex, however, you cannot create a CNAME record for the top node of the DNS namespace, 
+        - can create an alias record at the top node of a DNS namespace, also known as the zone apex, however, you cannot create a CNAME record for the top node of the DNS namespace,
+        - can be used to non domain cases, such as CloudFront distribution
     - MX record, specifies the names of your mail servers
     - NS record, identifies the name servers for the hosted zones
     - A record - Used to point a domain or subdomain to an IP address.
@@ -252,6 +253,7 @@
     - makes it easy to set up, operate, and scale a relational database in the cloud.
     - Amazon RDS Multi-AZ, at least 2 az, non-aurora: synchronously replicates, aurora: asynchronous
         - availablity 
+        - in single region
     - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server databae engines asynchronous replication
         - provide enhanced performance, scalability, and durability, not availablity 
     - if master database is encrypted, read replicas are encrypted
@@ -543,9 +545,11 @@
 - 多选，看清需要选几个，别漏了
 - disaster recovery always looks at ensuring resources are created in another region
 - AWS CodeBuild is a fully managed build service in the cloud. CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy.
+- Elastic Beanstalk supports the deployment of web applications from Docker containers
 - 1
     - 26
-    - 
+- 2
+    - 11
 
 
 
