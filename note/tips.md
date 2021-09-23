@@ -149,6 +149,7 @@
 - Security Groups are stateful, so allowing inbound traffic to the necessary ports enables the connection. 
 - Network ACLs are stateless, so you must allow both inbound and outbound traffic
 - inbound rule: ipv4/6 address/block, another security group
+- The default network ACL is configured to allow all traffic to flow in and out of the subnets to which it is associated
 
 ### Auto Scaling group
 - policy
