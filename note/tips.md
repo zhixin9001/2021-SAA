@@ -41,6 +41,12 @@
 - aws S3 sync command
 - Each uploaded file automatically gets a public URL, which can be used to download the file at a later 
 - use Pre-Signed URLs to upload objects to S3
+- By default, CloudTrail event log files are encrypted using Amazon S3 server-side encryption (SSE)
+- Updates made to objects in S3 follow an eventual consistency model. Hence, for object updates made to the same key, there can be a slight delay for get new version
+- If you create an S3 Lifecycle expiration rule that causes objects that have been in S3 Standard-IA or S3 One Zone-IA storage for less than 30 days to expire, you are charged for 30 days. If you create a Lifecycle expiration rule that causes objects that have been in S3 Glacier storage for less than 90 days to expire, you are charged for 90 days. 
+- origin access identity (OAI)
+    - Create a special CloudFront user called an origin access identity (OAI) and associate it with your distribution.
+    - Configure your S3 bucket permissions so that CloudFront can use the OAI to access the files in your bucket and serve them to your users. Make sure that users can’t use a direct URL to the S3 bucket to access a file there.
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -181,7 +187,7 @@
 - default termination policy
     - on-demand/spot instance -> old launch config -> old launch template -> close to next billing
 - if more than one policy matched, the policy that provides the largest capacity will be selected
-
+- Not support: add the software installation to the configuration
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
 - Golden AMI 
@@ -243,11 +249,13 @@
     - also can be used as session store, has open source libs
     - DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records
 - Redshift
-    - a fully-managed petabyte-scale cloud-based data warehouse 
+    - a fully-managed petabyte-scale, column-oriented, cloud-based data warehouse 
     - designed for large scale data set storage and analysis.
     - Redshift Spectrum(光谱), query and retrieve structured and semistructured data from files in Amazon S3 without having to load the data into Amazon Redshift tables.
     - When you provision an Amazon Redshift cluster, it is locked down by default so nobody has access to it, should config security group
     - Enable Amazon Redshift Enhanced VPC Routing to let all traffic from and to the Redshift cluster does not go through the Internet.
+    - Regardless of whether you enable automated snapshots, you can take a manual snapshot whenever you want. Amazon Redshift will never automatically delete a manual snapshot.Manual snapshots are retained even after you delete your cluster
+    - Automated snapshots are automatically deleted within the period of 1(Least) to 35(Max) days(Based on the retention period settings). 
 - Elasticsearch
     - full-text search engine, with an HTTP web interface, schema-free JSON documents
 - RDS (Relational Database Service)
@@ -263,6 +271,9 @@
     - replicating data，no charge for same region
     - not fully managed
     - max 16tb
+    - can't use autoscaling with RDS
+    - virtual shards 
+        - Sharding is a common concept to split data across multiple tables in a database
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
@@ -339,8 +350,8 @@
 - You can easily add tags to define which instances are production and which ones are development instances. These tags can then be used while controlling access via an IAM Policy
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
-- SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail
-- SSE-KMS, with trail
+- SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail, self managed
+- SSE-KMS, with trail, need you manage the master key in AWS KMS.
 - SSE-C , you manage the encryption keys and Amazon S3 manages the encryption
 
 ### Protect
@@ -356,6 +367,7 @@
     - can be used to manage your organization. SCPs offer central control over the maximum available permissions for all accounts in your organization, allowing you to ensure your accounts stay within your organization’s access control guidelines.
 - AWS Trusted Advisor
     - provides recommendations that help you follow AWS best practices. Trusted Advisor evaluates your account by using checks. These checks identify ways to optimize your AWS infrastructure, improve security and performance, reduce costs, and monitor service quotas.
+    - can be used for check service limit
 
 ### SQS
 - fifo, 300/min, batch 3000, 10 requests max
@@ -465,6 +477,7 @@
     - Kinesis Data Streams Fanout
         - By default, the 2MB/second/shard output is shared between all of the applications consuming data from the stream
         - With enhanced fan-out developers can register stream consumers to use enhanced fan-out and receive their own 2MB/second pipe of read throughput per shard
+    - A Kinesis stream stores records from 24 hours by default,up to 168 hours(7 days)
 - Amazon Kinesis Data Firehose
     - reliably load streaming data into data lakes, data stores, and analytics tools.
     - fully managed
@@ -553,11 +566,20 @@
 - Elastic Beanstalk supports the deployment of web applications from Docker containers
 - Amazon SES, Simple email service, is an email platform that provides an easy, cost-effective way for you to send and receive email using your own email addresses and domains.
 - VM Import/Export enables customers to import Virtual Machine (VM) images in order to create Amazon EC2 instances
+- Amazon Elastic Container Service for Kubernetes (Amazon EKS) is a managed service that makes it easy for you to run Kubernetes on AWS without needing to install and operate your own Kubernetes clusters.
+- Higi avaliablity:
+    - Multiple AWS Regions if required for distributing workload load across multiple Availability Zones and AWS Regions 
+    - (for example, DNS, ELB, Application Load Balancer, API Gateway, EC2)
+- Amazon Machine Image (AMI)
+    - by default, AMIs that you have created will not be available across all regions
+    - You have to copy the AMI across regions.
 - 1
     - 26
 - 2
     - 11
     - 32
+- 3
+    - 5 6 14 17 20 21 23 24 27 32 33 36 40 41 54 59 63  
 
 
 
