@@ -195,6 +195,7 @@
     - on-demand/spot instance -> old launch config -> old launch template -> close to next billing
 - if more than one policy matched, the policy that provides the largest capacity will be selected
 - Not support: add the software installation to the configuration
+- Cooldown period is a configurable setting for your Auto Scaling group which ensures that it doesn't launch or terminate additional instances before the previous scaling activity takes effect.
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
 - Golden AMI 
@@ -263,6 +264,7 @@
     - Enable Amazon Redshift Enhanced VPC Routing to let all traffic from and to the Redshift cluster does not go through the Internet.
     - Regardless of whether you enable automated snapshots, you can take a manual snapshot whenever you want. Amazon Redshift will never automatically delete a manual snapshot.Manual snapshots are retained even after you delete your cluster
     - Automated snapshots are automatically deleted within the period of 1(Least) to 35(Max) days(Based on the retention period settings). 
+    - Cross-Region Snapshots for the Redshift Cluster. 
 - Elasticsearch
     - full-text search engine, with an HTTP web interface, schema-free JSON documents
 - RDS (Relational Database Service)
@@ -360,6 +362,7 @@
     - A recovered instance is identical to the original instance, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata
     - If your instance has a public IPv4 address, it retains the public IPv4 address after recovery
 - You can easily add tags to define which instances are production and which ones are development instances. These tags can then be used while controlling access via an IAM Policy
+- by default, EBS Volumes are replicated within their Availability Zones
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail, self managed
@@ -600,6 +603,19 @@
     - Retrieve historical configurations of one or more resources. 
     - Receive a notification whenever a resource is created, modified, or deleted. 
     - View relationships between resources
+- Amazon CloudSearch, you can quickly add rich search capabilities to your website or application
+- AWS Certificate manager can be used to generate SSL certificates used to encrypt traffic in transit
+- API Gateway with STS,Security Token Service , This is used for issuing tokens when using the API gateway for traffic in transit
+- IAM Access Key, for secure access to EC2 Instances
+- How is AWS CloudFormation different from AWS Elastic Beanstalk? 
+    - These services are designed to complement 互补each other. 
+    - AWS Elastic Beanstalk provides an environment to easily deploy and run applications in the cloud. It is integrated with developer tools and provides a one-stop experience for you to manage the lifecycle of your applications. 
+    - AWS CloudFormation is a convenient provisioning mechanism for a broad range of AWS resources. It supports the infrastructure needs of many different types of applications such as existing enterprise applications, legacy applications, applications built using a variety of AWS resources and containerbased solutions (including those built using AWS Elastic Beansatlk).
+    -  Elastic BeanStalk as a Platform where I deploy an application.
+    -   Cloudformation is "where I define a stack of resources". 
+    -   Elastic BeanStalk is good for the relatively narrow use case of PaaS applications.
+    -   Cloudformation is good for the relatively broad use of defining Infrastructure as Code.  
+
 
 
 - 1
@@ -610,7 +626,7 @@
 - 3
     - 5 6 14 17 20 21 23 24 27 32 33 36 40 41 54 59 63  
 - 4
-    - 48 50 53(limit：20，查无此据) 58 62
+    - 9 11 15 16 18 21 22 23 26 30 33 37 38 48 50 53(limit：20，查无此据) 58 62
 
 
 
