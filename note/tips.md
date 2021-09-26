@@ -15,6 +15,7 @@
     - By design, delivering data out of CloudFront can be more cost-effective than delivering it from S3 directly to your users.
     - georestriction
     - select this, if not upload, but download
+    - each file automatically expires after 24 hours
 - version
     - Once you version-enable a bucket, it can never return to an unversioned state. 
     - recover objects from accidental deletion or overwrite, delete marker
@@ -47,6 +48,10 @@
 - origin access identity (OAI)
     - Create a special CloudFront user called an origin access identity (OAI) and associate it with your distribution.
     - Configure your S3 bucket permissions so that CloudFront can use the OAI to access the files in your bucket and serve them to your users. Make sure that users can’t use a direct URL to the S3 bucket to access a file there.
+- Retrieving S3 Glacier Archives
+    - Expedited 加快
+    - Standard
+    - bulk
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -92,6 +97,8 @@
 - Deregistration, 
     - By default, 300 seconds
 - cross-zone load balancing, az as min unit -> instance as min unit
+- Elastic Load Balancing logs 
+    - time the request was received, the client's IP address,latencies, request paths, and server responses. 
 
 ### Network
 - types
@@ -264,7 +271,7 @@
         - availablity 
         - in single region
     - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server databae engines asynchronous replication
-        - provide enhanced performance, scalability, and durability, not availablity 
+        - provide enhanced performance, scalability, and durability, not availablity, because maybe in one az
     - if master database is encrypted, read replicas are encrypted
     - You can only enable encryption for an Amazon RDS DB instance when you create it
         - can create a snapshot of your DB instance, and then create an encrypted copy of that snapshot
@@ -274,6 +281,11 @@
     - can't use autoscaling with RDS
     - virtual shards 
         - Sharding is a common concept to split data across multiple tables in a database
+    - DB parameter groups
+        - a container for engine configuration values that are applied to one or more DB instances. 
+        - A default DB parameter group is created if you create a DB instance without specifying a customer-created DB parameter group. 
+        - Each default DB parameter group contains database engine defaults and Amazon RDS system defaults based on the engine, compute class, and allocated storage of the instance. 
+        - You cannot modify the parameter settings of a default DB parameter group; you must create your own DB parameter group to change parameter settings from their default value.
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
@@ -573,6 +585,23 @@
 - Amazon Machine Image (AMI)
     - by default, AMIs that you have created will not be available across all regions
     - You have to copy the AMI across regions.
+- AWS Data Pipeline, a web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals. 
+    - helps you easily create complex data processing workloads that are fault tolerant, repeatable, and highly available
+- Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.
+- Bankup & recovery
+    - Cold Backup是指定期导出并上传业务数据；当灾难发生时，启动数据层和应用层资源，并导入数据。 例如 MySQL 利用 mysqldump 工具进行定期的全量备份或增量备份。
+    - Pilot Light 是指实时异步复制业务数据；当灾难发生时，启动应用层资源。  
+    - Warm Standby是指实时复制业务数据，应用层保持小规模资源配置；当灾难发生时，迅速扩大应用层资源。 
+    - Hot Site是指实时同步/异步双向复制业务数据，应用层资源保持一定规模的配置，DNS 按权重 解析到两个站点；当灾难发生时，DNS解析到单个站点, 并迅速扩大应用层资源。 
+- AWS Config
+    - Evaluate your AWS resource configurations for desired settings. 
+    - Get a snapshot of the current configurations of the supported resources that are associated with your AWS account.
+    - Retrieve configurations of one or more resources that exist in your account. 
+    - Retrieve historical configurations of one or more resources. 
+    - Receive a notification whenever a resource is created, modified, or deleted. 
+    - View relationships between resources
+
+
 - 1
     - 26
 - 2
@@ -580,6 +609,8 @@
     - 32
 - 3
     - 5 6 14 17 20 21 23 24 27 32 33 36 40 41 54 59 63  
+- 4
+    - 48 50 53(limit：20，查无此据) 58 62
 
 
 
