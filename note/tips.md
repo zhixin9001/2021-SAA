@@ -293,6 +293,7 @@
         - A default DB parameter group is created if you create a DB instance without specifying a customer-created DB parameter group. 
         - Each default DB parameter group contains database engine defaults and Amazon RDS system defaults based on the engine, compute class, and allocated storage of the instance. 
         - You cannot modify the parameter settings of a default DB parameter group; you must create your own DB parameter group to change parameter settings from their default value.
+    - highly discourage disabling automated backups because it disables point-in-time recovery(0-35 days)
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
