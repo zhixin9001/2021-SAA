@@ -86,6 +86,12 @@
 - on-promise
     - Create an inbound endpoint on Route 53 Resolver and then DNS resolvers on the on-premises network can forward DNS queries to Route 53 Resolver via this endpoint
     - Create an outbound endpoint on Route 53 Resolver and then Route 53 Resolver can conditionally forward queries to resolvers on the on-premises network via this endpoint
+- hosted zone
+    - Public Hosted Zone - contain records that specify how you want to route traffic on the internet. 
+    - Private Hosted Zone - contain records that specify how you want to route traffic in an Amazon VPC. 
+    - When you register a domain with Route 53, we create a hosted zone for you automatically.
+
+
 
 ### Load Balancer
 - Application Load Balancer
