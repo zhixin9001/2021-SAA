@@ -156,6 +156,11 @@
         - create a Resource Share
         - specify resources
         - specify accounts. 
+- To enable access to or from the internet for instances in a VPC subnet, you must do the following: 
+    - Attach an internet gateway to your VPC. 
+    - Ensure that your subnet's route table points to the internet gateway. 
+    - Ensure that instances in your subnet have a globally unique IP address (public IPv4 address, Elastic IP address,or IPv6 address). 
+    - Ensure that your network access control and security group rules allow the relevant traffic to flow to and from your instance
 ### Security groups
 - By default, security groups allow all outbound traffic.
 - Security group rules are always permissive; you can't create rules that deny access.
@@ -363,12 +368,16 @@
     - If your instance has a public IPv4 address, it retains the public IPv4 address after recovery
 - You can easily add tags to define which instances are production and which ones are development instances. These tags can then be used while controlling access via an IAM Policy
 - by default, EBS Volumes are replicated within their Availability Zones
+- metadata
+    - http://169.254.169.254/latest/meta-data/ 
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail, self managed
 - SSE-KMS, with trail, need you manage the master key in AWS KMS.
 - SSE-C , you manage the encryption keys and Amazon S3 manages the encryption
-
+- AWS CloudHSM Module
+    - you can manage your own encryption keys using FIPS 140-2 Level
+    - have complete control over the keys and the entire lifecycle around the keys
 ### Protect
 - Amazon GuardDuty
     - continuously monitor and protect your AWS accounts, workloads, and data stored in Amazon S3. 
@@ -538,6 +547,7 @@
         1. Remove the member account from the old organization 
         2. Send an invite to the member account from the new Organization 
         3. Accept the invite to the new organization from the member account
+    - can apply service control policies (SCPs) across multiple AWS accounts that are members of an organization
 - AWS CloudHSM is a cloud-based hardware security module (HSM) that enables you to easily generate and use your encryption keys on the AWS Cloud. 
     - auto rotate
 - AWS Systems Manager Parameter Store (aka SSM Parameter Store) provides secure, hierarchical storage for configuration data management and secrets management
