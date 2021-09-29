@@ -632,14 +632,13 @@
     -   Cloudformation is "where I define a stack of resources". 
     -   Elastic BeanStalk is good for the relatively narrow use case of PaaS applications.
     -   Cloudformation is good for the relatively broad use of defining Infrastructure as Code.  
-
+- AWS CloudTrail can be used to monitor the API calls.
 
 
 - 1
     - 26
 - 2
-    - 11
-    - 32
+    - 11 32
 - 3
     - 5 6 14 17 20 21 23 24 27 32 33 36 40 41 54 59 63  
 - 4
