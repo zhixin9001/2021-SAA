@@ -70,7 +70,7 @@
     - latency
         - Use latency based routing when you have resources in multiple AWS Regions and you want to route traffic to the region that provides the lowest latency
     - weighted
-    - multivalue answer
+    - multivalue answer: If you want to route traffic approximately randomly to multiple resources
 - DNS cache
 - rules
     - CNAME record, charged
@@ -105,7 +105,7 @@
 - cross-zone load balancing, az as min unit -> instance as min unit
 - Elastic Load Balancing logs 
     - time the request was received, the client's IP address,latencies, request paths, and server responses. 
-
+- ELB can only balance traffic in one region and not across multiple regions.
 ### Network
 - types
     - AWS Direct Connect, establish a dedicated network connection from your premises to AWS. expensive, and takes a few days to a few months to setup
@@ -633,7 +633,7 @@
     -   Elastic BeanStalk is good for the relatively narrow use case of PaaS applications.
     -   Cloudformation is good for the relatively broad use of defining Infrastructure as Code.  
 - AWS CloudTrail can be used to monitor the API calls.
-
+    - can turn on a trail across all regions
 
 - 1
     - 26
