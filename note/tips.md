@@ -16,6 +16,12 @@
     - georestriction
     - select this, if not upload, but download
     - each file automatically expires after 24 hours
+    - support route to multiple origins based on the content type
+    - Use an origin group with primary and secondary origins to configure CloudFront for high availability and failover
+    - field-level encryption
+        - public key to use to encrypt them
+        - You can encrypt up to 10 data fields in a request. 
+        - You can’t encrypt all of the data in a request with field-level encryption; you must specify individual fields to encrypt
 - version
     - Once you version-enable a bucket, it can never return to an unversioned state. 
     - recover objects from accidental deletion or overwrite, delete marker
@@ -52,6 +58,9 @@
     - Expedited 加快
     - Standard
     - bulk
+- Cross region replication
+    - can not replicate existed data
+    - can across region, S3 sync command also can
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -90,7 +99,6 @@
     - Public Hosted Zone - contain records that specify how you want to route traffic on the internet. 
     - Private Hosted Zone - contain records that specify how you want to route traffic in an Amazon VPC. 
     - When you register a domain with Route 53, we create a hosted zone for you automatically.
-
 
 
 ### Load Balancer
@@ -240,6 +248,7 @@
     - 80 TB of usable HDD storage, 40 vCPUs, 1 TB of SATA SSD storage, and up to 40 Gb network connectivity
     - original Snowball device had 80TB of storage space.
     - You can't directly copy data from Snowball Edge devices into AWS Glacier.
+    ![ss](./snow-ball.png)
 - AWS Storage Gateway, cache, on premises access to virtually unlimited cloud storage
     - File Gateway, s3, offers Server Message Block (SMB) or NFS-based access to data in Amazon S3 with local caching. 
     - volume gw, cloud-based iSCSI block storage volumes, iSCSI block
@@ -442,15 +451,21 @@
     - Policies can be attached to users, groups, or Amazon S3 buckets
     - can grant users within your AWS Account or other AWS Accounts
     - further restrict based on certain conditions, such as request time, SSL， IP
+    - resource-based policy, same account or other accounts
+    - user policy, only control users in same account
 - permissions boundary
     - can be used to control the maximum permissions employees can grant to the IAM principals, permissions boundary intersect with IAM permissions policy
 - Service control policies (SCPs) 
     - available only in an organization that has all features enabled
 
 ### IAM
+- IAM database authentication
+    - You can authenticate to your DB instance using AWS Identity and Access Management (IAM) database authentication
+    - works with MySQL and PostgreSQL
+    - An authentication token is a unique string of characters generated using AWS Signature Version 4. 
+    - Each token has a lifetime of 15 minutes.
 - IAM role
     - manage temporary credentials for applications that run on an EC2 instance
-- IAM role to manage temporary credentials for applications that run on an EC2 instance
 - Lambda -> S3
     - On same AWS Account, just grant IAM role for Lambda
     - On different Account, IAM role for lambda & S3 bucket policy   
@@ -634,6 +649,11 @@
     -   Cloudformation is good for the relatively broad use of defining Infrastructure as Code.  
 - AWS CloudTrail can be used to monitor the API calls.
     - can turn on a trail across all regions
+- Amazon WorkSpaces is a managed, secure Desktop-as-a-Service (DaaS) solution
+- AWS AppSync is a fully managed service that makes it easy to develop GraphQL APIs by handling the heavy lifting of securely connecting to data sources like AWS DynamoDB, Lambda, and more.
+- AWS OpsHub is a graphical user interface you can use to manage your AWS Snowball devices, enabling you to rapidly deploy edge computing workloads and simplify data migration to the cloud
+- AWS CodeDeploy is a fully managed deployment service that automates software deployments to a variety of compute services such as Amazon EC2, AWS Fargate, AWS Lambda, and your on-premises servers. 
+
 
 - 1
     - 26
