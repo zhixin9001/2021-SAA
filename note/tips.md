@@ -2,6 +2,7 @@
 ### S3
 - an object storage service, not a network file system
 - strong read-after-write consistency
+- Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely.
 - prefix
     - Amazon S3 automatically scales to high request rates.
     - Your application can achieve at least 3,500 PUT/COPY/POST/DELETE or 5,500 GET/HEAD requests per second per prefix in a bucket.
@@ -217,6 +218,7 @@
 - Cooldown period is a configurable setting for your Auto Scaling group which ensures that it doesn't launch or terminate additional instances before the previous scaling activity takes effect.
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
+- region based
 - Golden AMI 
     - an AMI that you standardize through configuration, consistent security patching, and hardening. It also contains agents you approve for logging, security, performance monitoring
     - Golden AMI pipeline
@@ -268,7 +270,7 @@
 - ElastiCache for redis
     - aws makes redisbe Health Insurance Portability and Accountability Act of 1996 (HIPAA)
     - Redis authentication tokens enable Redis to require a token (password) before allowing clients to execute commands
-
+- Multi-AZ, min data loss, cost
 ### DB
 - DynamoDB 
     - a key-value, document database, multi-region, built-in security, backup and restore
@@ -339,7 +341,7 @@
     - Spread placement groups, can span multiple az in the same Region. You can have a maximum of 7 running instances per Availability Zone per group. suitable for mixing instance types or launching instances over time.
 - volume types
     - SSD-backed volumes, frequent read/write operations with small I/O size, IOPS(每秒的讀寫次數), 
-        - General Purpose SSD — gp2/3, Provides a balance of price and performance. We recommend these volumes for most workloads. IOPS/Volume of 16,000.
+        - General Purpose SSD — gp2/3, Provides a balance of price and performance. We recommend these volumes for most workloads. IOPS/Volume of 16,000. allows a burst in performance when needed.
         - Provisioned IOPS SSD — io1/io2/io2 Block Express ‡, Provides high performance for mission-critical, low-latency, or high-throughput workloads. io1/io2 maximum of 64,000 IOPS and provide up to 1,000 MB/s of throughput per volume. io2 Block Express ‡ has 4*64000=256000, and 4000mb/s
     - HDD-backed volumes, throughput (measured in MiB/s) is a better performance measure than IOPS. CANNOT be used as a boot volume
         - Throughput Optimized HDD, st1 — A low-cost HDD designed for frequently accessed, throughput-intensive workloads. max IOPS/Volume of 500
@@ -434,6 +436,8 @@
     - or by adding a deduplication ID to the messages that you publish
 - Standard SNS -> Standard SQS
 - FIFO SNS -> FIFO SQS
+- Amazon EventBridge
+    - support third-party services integration.
 
 ### Lambda
 - Support: c#, go, java, node.js, python, ruby
@@ -493,7 +497,7 @@
 ```
 - IAM permission boundary
     - can only be applied to roles or users, not IAM groups.
-
+- trust policy: The IAM service supports only one type of resource-based policy called a role trust policy
 ### Identity
 - AWS_IAM authorization
     - add least-privileged permissions to the respective IAM role to securely invoke your API.
@@ -556,7 +560,7 @@
 - Amazon EMR
     - cloud big data platform
     - Apache Spark, Apache Hive, Apache HBase
-- Elastic Container Service (ECS)
+- Elastic Container Service (ECS) / Amazon Elastic Kubernetes Service (Amazon EKS)
     - with the EC2 launch type
     - with the Fargate launch type, vcpu, memory
 
@@ -623,11 +627,11 @@
 - AWS Data Pipeline, a web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals. 
     - helps you easily create complex data processing workloads that are fault tolerant, repeatable, and highly available
 - Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.
-- Bankup & recovery
-    - Cold Backup是指定期导出并上传业务数据；当灾难发生时，启动数据层和应用层资源，并导入数据。 例如 MySQL 利用 mysqldump 工具进行定期的全量备份或增量备份。
-    - Pilot Light 是指实时异步复制业务数据；当灾难发生时，启动应用层资源。  
-    - Warm Standby是指实时复制业务数据，应用层保持小规模资源配置；当灾难发生时，迅速扩大应用层资源。 
-    - Hot Site是指实时同步/异步双向复制业务数据，应用层资源保持一定规模的配置，DNS 按权重 解析到两个站点；当灾难发生时，DNS解析到单个站点, 并迅速扩大应用层资源。 
+- disaster recovery
+    - Backup and Restore 是指定期导出并上传业务数据；当灾难发生时，启动数据层和应用层资源，并导入数据。 例如 MySQL 利用 mysqldump 工具进行定期的全量备份或增量备份。data is backed up to tape and sent off-site regularly.
+    - Pilot Light 是指实时异步复制业务数据；当灾难发生时，启动应用层资源。  data is backed up to tape and sent off-site regularly.
+    - Warm Standby是指实时复制业务数据，应用层保持小规模资源配置；当灾难发生时，迅速扩大应用层资源。 a scaled-down version of a fully functional environment is always running
+    - Multi Site 是指实时同步/异步双向复制业务数据，应用层资源保持一定规模的配置，DNS 按权重 解析到两个站点；当灾难发生时，DNS解析到单个站点, 并迅速扩大应用层资源。 in an active-active configuration
 - AWS Config
     - Evaluate your AWS resource configurations for desired settings. 
     - Get a snapshot of the current configurations of the supported resources that are associated with your AWS account.
@@ -653,7 +657,14 @@
 - AWS AppSync is a fully managed service that makes it easy to develop GraphQL APIs by handling the heavy lifting of securely connecting to data sources like AWS DynamoDB, Lambda, and more.
 - AWS OpsHub is a graphical user interface you can use to manage your AWS Snowball devices, enabling you to rapidly deploy edge computing workloads and simplify data migration to the cloud
 - AWS CodeDeploy is a fully managed deployment service that automates software deployments to a variety of compute services such as Amazon EC2, AWS Fargate, AWS Lambda, and your on-premises servers. 
-
+- Amazon MQ is a managed message broker service for Apache ActiveMQ, it uses industry-standard APIs and protocols for messaging, including JMS, NMS, AMQP, STOMP, MQTT, and WebSocket.
+- API Gateway
+    - Support for stateful (WebSocket) and stateless (HTTP and REST) APIs.
+    - Canary release
+    - cache
+    - cloud trail
+    - Integration with AWS WAF
+    - Integration with AWS X-Ray
 
 - 1
     - 26
