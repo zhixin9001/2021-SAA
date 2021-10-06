@@ -68,6 +68,15 @@
         - Amazon Simple Notification Service (Amazon SNS) topic
         - Amazon Simple Queue Service (Amazon SQS) queue, FIFO not supported
         - AWS Lambda
+- static website url:
+    - s3-website dot (.) Region : http://bucket-name.s3-website.Region.amazonaws.com
+    - s3-website dash (-) Region : http://bucket-name.s3-website-Region.amazonaws.com
+- An object consists of the following:
+    - key, version id, value, subresource, access control info, metadata
+    - Metadata, which can be included with the object, is not encrypted while being stored on Amazon S3. Therefore, AWS recommends that customers not place sensitive information in Amazon S3 metadata.
+- Glacier
+    - S3 Glacier vault is a container for storing archives. When you create a vault, you specify a vault name and the AWS Region in which you want to create the vault. 
+    - S3 Glacier Vault Lock allows you to easily deploy and enforce compliance controls for individual S3 Glacier vaults with a vault lock policy
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -118,12 +127,16 @@
 - Deregistration, 
     - By default, 300 seconds
 - cross-zone load balancing, az as min unit -> instance as min unit
+    - default: Application Load Balancer is enabled
+    - default: Network Load Balancer is disabled
+    - Classic Load Balancer, by cli: disabled, by consle: enabled
 - Elastic Load Balancing logs 
     - time the request was received, the client's IP address,latencies, request paths, and server responses. 
 - ELB can only balance traffic in one region and not across multiple regions.
 ### Network
 - types
     - AWS Direct Connect, establish a dedicated network connection from your premises to AWS. expensive, and takes a few days to a few months to setup
+        - does not support encrypted network connectivity
     - AWS Direct Connect plus VPN, combine one or more AWS Direct Connect with the Amazon VPC VPN. This combination provides an IPsec-encrypted, reduces network costs, increases bandwidth throughput, and provides a more consistent network.
     - AWS Site-to-Site VPN, securely connect your on-premises network or branch office site to your VPC. 
         - IPsec VPN connection
@@ -183,6 +196,8 @@
     - Ensure that your subnet's route table points to the internet gateway. 
     - Ensure that instances in your subnet have a globally unique IP address (public IPv4 address, Elastic IP address,or IPv6 address). 
     - Ensure that your network access control and security group rules allow the relevant traffic to flow to and from your instance
+- route table
+    - A subnet is implicitly associated with the main route table if it is not explicitly associated with a particular route table.
 ### Security groups
 - By default, security groups allow all outbound traffic.
 - Security group rules are always permissive; you can't create rules that deny access.
@@ -223,6 +238,10 @@
 - if more than one policy matched, the policy that provides the largest capacity will be selected
 - Not support: add the software installation to the configuration
 - Cooldown period is a configurable setting for your Auto Scaling group which ensures that it doesn't launch or terminate additional instances before the previous scaling activity takes effect.
+- delete the ASG, the instances will be terminated and the ASG will be deleted
+- regional constructs. They can span Availability Zones, but not AWS regions.
+- support combined purchasing model
+- minimum, maximum, and desired capacity(default: = minimum)
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
 - region based
@@ -252,6 +271,9 @@
     - encrypted everywhere, such as snapshot create, ec2 read data,...
     - az locked
     - it is automatically replicated within its Availability Zone to prevent data loss 
+    - raid
+        - raid 0: for greater I/O performance than you can achieve with a single volume, RAID 0 can stripe multiple volumes together; 
+        - raid 1: for on-instance redundancy, RAID 1 can mirror two volumes together.
 
 - EFS
     - regional, across multiple az
@@ -289,6 +311,10 @@
     - max item size 400kb
     - also can be used as session store, has open source libs
     - DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records
+    - All DynamoDB tables are encrypted
+        - can't disabled
+        - By default, encrypted under an AWS owned customer master key (CMK), which do not write to CloudTrail logs, don't charge
+        - can set to use another customer-managed CMK
 - Redshift
     - a fully-managed petabyte-scale, column-oriented, cloud-based data warehouse 
     - designed for large scale data set storage and analysis.
@@ -305,6 +331,7 @@
     - Amazon RDS Multi-AZ, at least 2 az, non-aurora: synchronously replicates, aurora: asynchronous
         - availablity 
         - in single region
+        - URL is the same, the failover is automated, by changing CNAME
     - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server databae engines asynchronous replication
         - provide enhanced performance, scalability, and durability, not availablity, because maybe in one az
     - if master database is encrypted, read replicas are encrypted
@@ -399,6 +426,7 @@
 - by default, EBS Volumes are replicated within their Availability Zones
 - metadata
     - http://169.254.169.254/latest/meta-data/ 
+- CloudWatch Logs agent installer on an existing EC2 instance to install and configure the CloudWatch Logs agent. After installation is complete, logs automatically flow from the instance to the log stream you create while installing the agent.
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail, self managed
@@ -415,6 +443,7 @@
 - Amazon Inspector, security assessments help you check for unintended network accessibility of your Amazon EC2 instances and for vulnerabilities on those EC2 instances
 - AWS WAF is a web application firewall service, Geo match conditions
     - specifies the IP addresses that you want to allow through
+    - AWS WAF is tightly integrated with Amazon CloudFront, the Application Load Balancer (ALB), Amazon API Gateway, and AWS AppSync
 - macie, private data
 - AWS Shield， ddos
 - Service control policies (SCPs) 
@@ -510,6 +539,13 @@
 - IAM permission boundary
     - can only be applied to roles or users, not IAM groups.
 - trust policy: The IAM service supports only one type of resource-based policy called a role trust policy
+- An IAM user with full administrator access can perform almost all AWS tasks except a few tasks designated only for the root account user. Some of the AWS tasks that only a root account user can do are as follows: 
+    - change account name or root password or root email address, 
+    - change AWS support plan, 
+    - close AWS account, 
+    - enable MFA on S3 bucket delete, 
+    - create Cloudfront key pair, 
+    - register for GovCloud.
 ### Identity
 - AWS_IAM authorization
     - add least-privileged permissions to the respective IAM role to securely invoke your API.
@@ -545,6 +581,8 @@
     - fully managed
     - can also batch, compress, transform, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security
     - When a Kinesis data stream is configured as the source of a Firehose delivery stream, Firehose’s PutRecord and PutRecordBatch operations are disabled, data can only come from the Kinesis data stream
+    - destination:
+        - redshift, s3, elasticsearch, splunk
 - Kinesis Agent
     - stand-alone Java software application that offers an easy way to collect and send data to Kinesis Data Streams or Kinesis Firehose
 - kinesis vs SQS, real-time, prefer kinesis
@@ -677,6 +715,11 @@
     - cloud trail
     - Integration with AWS WAF
     - Integration with AWS X-Ray
+- Amazon Transcribe is an automatic speech recognition (ASR) service that makes it easy to convert audio to text
+- Amazon Quicksight is for the visual representation of data through Dashboards, graphs and various other modes. It has a rich feature set that helps analyze data and the complex relationships that exist between different data features
+- Alexa is Amazon’s cloud-based voice service available on hundreds of millions of devices from Amazon and third-party device manufacturers. 
+- AWS Security Hub gives you a comprehensive view of your high-priority security alerts and security posture across your AWS accounts. With Security Hub, you have a single place that aggregates, organizes, and prioritizes your security alerts, or findings, from multiple AWS services, such as Amazon GuardDuty, Amazon Inspector, Amazon Macie, AWS Identity and Access Management (IAM) Access Analyzer, and AWS Firewall Manager, as well as from AWS Partner solutions.
+- AWS Firewall Manager is a security management service that allows you to centrally configure and manage firewall rules across your accounts and applications in AWS Organization. 
 
 - 1
     - 26
@@ -693,4 +736,3 @@
 
 
 
-o
