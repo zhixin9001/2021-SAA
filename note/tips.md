@@ -62,6 +62,12 @@
 - Cross region replication
     - can not replicate existed data
     - can across region, S3 sync command also can
+- Amazon S3 notification
+    - first add a notification configuration that identifies the events you want Amazon S3 to publish
+    - destinations:
+        - Amazon Simple Notification Service (Amazon SNS) topic
+        - Amazon Simple Queue Service (Amazon SQS) queue, FIFO not supported
+        - AWS Lambda
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -144,6 +150,7 @@
     also supported
         - bule/green 
         - 聚合, Network Load Balancers, Application Load Balancers, Elastic IPs, and EC2 Instances, without making user-facing changes
+        - giving you a single entry point to your application, regardless of how many AWS Regions it’s deployed in
     - Amazon CloudFront, CDN(content delivery network)
     - diff: AWS Global Accelerator & CloudFront both use the AWS global network and its edge locations around the world. CloudFront improves performance for both cacheable content and dynamic content (such as API acceleration and dynamic site delivery), while Global Accelerator improves performance for a wide range of applications over TCP or UDP. 
 - VPC console wizard
@@ -235,6 +242,7 @@
     - The data in an instance store persists only during the lifetime of its associated instance. I
     - data persist: reboot, lost: stop, terminate, hibernate
     - provide high random I/O performance at low cost
+    - cheaper than gp2 and io1
 - EBS
     - EBS volumes behave like raw, unformatted block devices. 
     - You can mount these volumes as devices on your instances. 
@@ -242,6 +250,8 @@
     - Multi-Attach: a single Provisioned IOPS SSD (io1 or io2) volume to multiple instances(up to 16 Linux instances built on the Nitro System) that are in the same Availability Zone. 
     - $0.10 per GB-month of provisioned storage. 
     - encrypted everywhere, such as snapshot create, ec2 read data,...
+    - az locked
+    - it is automatically replicated within its Availability Zone to prevent data loss 
 
 - EFS
     - regional, across multiple az
@@ -270,6 +280,7 @@
 - ElastiCache for redis
     - aws makes redisbe Health Insurance Portability and Accountability Act of 1996 (HIPAA)
     - Redis authentication tokens enable Redis to require a token (password) before allowing clients to execute commands
+    - purpose-built commands for working with real-time geospatial data
 - Multi-AZ, min data loss, cost
 ### DB
 - DynamoDB 
@@ -403,6 +414,7 @@
     - Disabling the service will delete all remaining data, including your findings and configurations
 - Amazon Inspector, security assessments help you check for unintended network accessibility of your Amazon EC2 instances and for vulnerabilities on those EC2 instances
 - AWS WAF is a web application firewall service, Geo match conditions
+    - specifies the IP addresses that you want to allow through
 - macie, private data
 - AWS Shield， ddos
 - Service control policies (SCPs) 
@@ -681,3 +693,4 @@
 
 
 
+o
