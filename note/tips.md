@@ -55,6 +55,7 @@
 - origin access identity (OAI)
     - Create a special CloudFront user called an origin access identity (OAI) and associate it with your distribution.
     - Configure your S3 bucket permissions so that CloudFront can use the OAI to access the files in your bucket and serve them to your users. Make sure that users can’t use a direct URL to the S3 bucket to access a file there.
+    - S3 buckets don't have security groups
 - Retrieving S3 Glacier Archives
     - Expedited 加快
     - Standard
@@ -332,6 +333,7 @@
         - availablity 
         - in single region
         - URL is the same, the failover is automated, by changing CNAME
+        - RDS applies OS updates by performing maintenance on the standby, then promoting the standby to primary, and finally performing maintenance on the old primary, which becomes the new standby
     - Amazon RDS Read Replicas, use MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server databae engines asynchronous replication
         - provide enhanced performance, scalability, and durability, not availablity, because maybe in one az
     - if master database is encrypted, read replicas are encrypted
@@ -378,9 +380,11 @@
     - Partition placement groups, availablity, max 7 partitions per az, can be used to deploy large distributed and replicated workloads, such as HDFS, HBase, and Cassandra, across distinct racks. visibility: which instances are in which partitions. share information accross Partitions
     - Spread placement groups, can span multiple az in the same Region. You can have a maximum of 7 running instances per Availability Zone per group. suitable for mixing instance types or launching instances over time.
 - volume types
+    - IOPS cannot be directly increased on a gp2 volume without increasing its size
     - SSD-backed volumes, frequent read/write operations with small I/O size, IOPS(每秒的讀寫次數), 
         - General Purpose SSD — gp2/3, Provides a balance of price and performance. We recommend these volumes for most workloads. IOPS/Volume of 16,000. allows a burst in performance when needed.
         - Provisioned IOPS SSD — io1/io2/io2 Block Express ‡, Provides high performance for mission-critical, low-latency, or high-throughput workloads. io1/io2 maximum of 64,000 IOPS and provide up to 1,000 MB/s of throughput per volume. io2 Block Express ‡ has 4*64000=256000, and 4000mb/s
+            - Multi-Attach
     - HDD-backed volumes, throughput (measured in MiB/s) is a better performance measure than IOPS. CANNOT be used as a boot volume
         - Throughput Optimized HDD, st1 — A low-cost HDD designed for frequently accessed, throughput-intensive workloads. max IOPS/Volume of 500
         - Cold HDD, sc1 — The lowest-cost HDD design for less frequently accessed workloads. max IOPS/Volume of 250.
@@ -720,6 +724,13 @@
 - Alexa is Amazon’s cloud-based voice service available on hundreds of millions of devices from Amazon and third-party device manufacturers. 
 - AWS Security Hub gives you a comprehensive view of your high-priority security alerts and security posture across your AWS accounts. With Security Hub, you have a single place that aggregates, organizes, and prioritizes your security alerts, or findings, from multiple AWS services, such as Amazon GuardDuty, Amazon Inspector, Amazon Macie, AWS Identity and Access Management (IAM) Access Analyzer, and AWS Firewall Manager, as well as from AWS Partner solutions.
 - AWS Firewall Manager is a security management service that allows you to centrally configure and manage firewall rules across your accounts and applications in AWS Organization. 
+- Lambda timeout: 1 second and 15 minutes.
+- efs, POSIX compliant file storage, s3 not, it is object based
+- s3 detail
+- instance profile can contain only one role, Set up an IAM service role with the appropriate permissions to allow access to the DynamoDB table. Configure an instance profile to assign this IAM role to the EC2 instance
+- when you create an IAM service role for EC2, the role automatically has EC2 identified as a trusted entity
+- raid 0 1
+- when you create an IAM service role for EC2, the role automatically has EC2 identified as a trusted entity
 
 - 1
     - 26
