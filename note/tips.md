@@ -731,7 +731,14 @@
 - when you create an IAM service role for EC2, the role automatically has EC2 identified as a trusted entity
 - raid 0 1
 - when you create an IAM service role for EC2, the role automatically has EC2 identified as a trusted entity
-
+- Aurora Serverless is the perfect way to create a database that can scale down to 0 servers, and scale up to many servers
+- AWS Shield Advanced will give you DDoS protection overall, and you cannot set up rate-based rules in Shield. WAF can
+- ELB don't support cross region¿
+- Dynamic port mapping with an Application Load Balancer makes it easier to run multiple tasks on the same Amazon ECS service on an Amazon ECS cluster.
+- DeleteOnTermination
+    - when ec2 is running, use cli to change set
+    - when firstly launch, on consle can set by checkbox
+- Create an auto-scaling group that spans across 2 AZ, which min=1, max=1, desired=1, so that if an instance goes down, it is automatically recreated in another AZ
 - 1
     - 26
 - 2
