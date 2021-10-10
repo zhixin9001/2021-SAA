@@ -23,6 +23,7 @@
         - public key to use to encrypt them
         - You can encrypt up to 10 data fields in a request. 
         - You can’t encrypt all of the data in a request with field-level encryption; you must specify individual fields to encrypt
+    - Generate a CloudFront signed URL, lambda is a good choice
 - version
     - Once you version-enable a bucket, it can never return to an unversioned state. 
     - recover objects from accidental deletion or overwrite, delete marker
@@ -50,7 +51,8 @@
     - Different versions of a single object can have different retention modes and periods.
 - aws S3 sync command
 - Each uploaded file automatically gets a public URL, which can be used to download the file at a later 
-- use Pre-Signed URLs to upload objects to S3
+- use Pre-Signed URLs to upload objects to S3    
+    - plus signed cookies. both can used to require that your users access your private content
 - By default, CloudTrail event log files are encrypted using Amazon S3 server-side encryption (SSE)
 - Updates made to objects in S3 follow an eventual consistency model. Hence, for object updates made to the same key, there can be a slight delay for get new version
 - If you create an S3 Lifecycle expiration rule that causes objects that have been in S3 Standard-IA or S3 One Zone-IA storage for less than 30 days to expire, you are charged for 30 days. If you create a Lifecycle expiration rule that causes objects that have been in S3 Glacier storage for less than 90 days to expire, you are charged for 90 days. 
@@ -83,6 +85,12 @@
 - Features
     - byte-range request is a perfect way to get the beginning of a file
     - ScanRange parameter, start(byte), end(byte)
+- Encryption
+    - To encrypt an object at the time of upload, you need to add a header called x-amz-server-side-encryption to the request
+    - There are two possible values for the header: 
+        - AES256, which tells S3 to use S3-managed keys
+        - aws:kms, which tells S3 to use AWS KMS–managed keys.
+    - To enforce object encryption, create an S3 bucket policy that denies any S3 Put request that does not include the x-amz-server-side-encryption header. 
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -138,10 +146,12 @@
     - default: Application Load Balancer is enabled
     - default: Network Load Balancer is disabled
     - Classic Load Balancer, by cli: disabled, by consle: enabled
+    
 - Elastic Load Balancing logs 
     - time the request was received, the client's IP address,latencies, request paths, and server responses. 
 - ELB can only balance traffic in one region and not across multiple regions.
 - can offload the decryption/encryption of TLS traffic
+- Dynamic port mapping with an Application Load Balancer makes it easier to run multiple tasks on the same Amazon ECS service on an Amazon ECS cluster.
 ### Network
 - types
     - AWS Direct Connect, establish a dedicated network connection from your premises to AWS. expensive, and takes a few days to a few months to setup
@@ -252,6 +262,8 @@
 - regional constructs. They can span Availability Zones, but not AWS regions.
 - support combined purchasing model
 - minimum, maximum, and desired capacity(default: = minimum)
+- When rebalancing, ASG launches new instances before terminating the old ones, so that rebalancing does not compromise the performance or availability of your application
+- When unhealthy, firstly terminates it(以及不可用了). Later, another scaling activity launches a new instance to replace the terminated instance
 ### AMI, snapshot
 - When the new AMI is copied from region A into region B, it automatically creates a snapshot in region B because AMIs are based on the underlying snapshots. 
 - region based
@@ -289,6 +301,16 @@
 - EFS
     - regional, across multiple az
     - pay only for the resources that you use. The EFS Standard Storage pricing is $0.30 per GB per month. 
+    - Amazon EFS with Provisioned Throughput mode
+        - for applications with high throughput ,or with requirements greater than those allowed by the **Bursting Throughput mode**
+            - can increase the Provisioned Throughput any time
+            - can decrease Throughput more than 24 hours later
+            - can change between Provisioned Throughput mode and the default Bursting Throughput mode 24 hours later
+    - Amazon EFS with Bursting(爆炸、冲破) Throughput mode 
+        - a file system's throughput scales as the amount of data stored in the standard storage class grows. 
+        - burst to high throughput levels for periods of time
+        - By default, recommends this mode
+    - POSIX compliant file storage, s3 not, it is object based
 - Snowball Edge Storage Optimized
     - 80 TB of usable HDD storage, 40 vCPUs, 1 TB of SATA SSD storage, and up to 40 Gb network connectivity
     - original Snowball device had 80TB of storage space.
@@ -307,7 +329,8 @@
         - One Zone
         - One Zone–IA 
     - Storage Gateway optimizes data transfer to AWS by sending only changed data and compressing data.
-          
+    - Volume Gateway provides block storage, ebs
+    - file gateway provides, s3, nfs, smb      
 
 ### Cache
 - ElastiCache for redis
@@ -363,6 +386,10 @@
         - Each default DB parameter group contains database engine defaults and Amazon RDS system defaults based on the engine, compute class, and allocated storage of the instance. 
         - You cannot modify the parameter settings of a default DB parameter group; you must create your own DB parameter group to change parameter settings from their default value.
     - highly discourage disabling automated backups because it disables point-in-time recovery(0-35 days)
+    - maintain
+        - Upgrades to the database engine level require downtime. Even if your RDS DB instance uses a Multi-AZ deployment, both the primary and standby DB instances are upgraded at the same time.
+        - hardware maintain, primary, cause failover switch, 60 s about, if standby, no failover at all
+        - os maintain, standby , then primary
 - Aurora
     - Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions
     - Aurora Replica, readonly, up to 15 Aurora Replicas per cluster,
@@ -374,6 +401,7 @@
 - Amazon Aurora Serverless
     - on-demand, auto-scaling configuration for Amazon Aurora
     - auto managed
+    - Aurora Serverless is the perfect way to create a database that can scale down to 0 servers, and scale up to many servers
 - Neptune
     - a fast, reliable, fully managed graph database service
 
@@ -444,6 +472,12 @@
 - metadata
     - http://169.254.169.254/latest/meta-data/ 
 - CloudWatch Logs agent installer on an existing EC2 instance to install and configure the CloudWatch Logs agent. After installation is complete, logs automatically flow from the instance to the log stream you create while installing the agent.
+- EC2 private ip can be used across az
+- DeleteOnTermination
+    - when ec2 is running, use cli to change set
+    - when firstly launch, on consle can set by checkbox
+- Create an auto-scaling group that spans across 2 AZ, which min=1, max=1, desired=1, so that if an instance goes down, it is automatically recreated in another AZ
+- ec2, without elb, Create an Elastic IP and use the EC2 user-data script to attach it can work
 ### KMS
 - customer master key (CMK), enforces a waiting period. To delete a CMK in AWS KMS you schedule key deletion. You can set the waiting period from a minimum of 7 days up to a maximum of 30 days, default 30
 - SSE-S3, server side encryption, each object is encrypted with a unique key. However without audit trail, self managed
@@ -468,7 +502,16 @@
 - AWS Trusted Advisor
     - provides recommendations that help you follow AWS best practices. Trusted Advisor evaluates your account by using checks. These checks identify ways to optimize your AWS infrastructure, improve security and performance, reduce costs, and monitor service quotas.
     - can be used for check service limit
+- AWS Security Hub gives you a comprehensive view of your high-priority security alerts and security posture across your AWS accounts. With Security Hub, you have a single place that aggregates, organizes, and prioritizes your security alerts, or findings, from multiple AWS services, such as Amazon GuardDuty, Amazon Inspector, Amazon Macie, AWS Identity and Access Management (IAM) Access Analyzer, and AWS Firewall Manager, as well as from AWS Partner solutions.
 
+- AWS Firewall Manager is a security management service that allows you to centrally configure and manage firewall rules across your accounts and applications in AWS Organization. 
+    - AWS WAF
+    - AWS Shield Advanced
+    - VPC Security Groups
+- AWS Shield Advanced will give you DDoS protection overall, and you cannot set up rate-based rules in Shield. WAF can
+- Amazon GuardDuty, bitcoin mining
+- AWS Shield Advanced, ddos
+- waf, control bot traffic and block common attack patterns, such as SQL injection or cross-site scripting
 ### SQS
 - fifo, 300/min, batch 3000, 10 requests max
     - .fifo suffix
@@ -509,7 +552,7 @@
     -  You should only enable your functions for VPC access when you need to interact with a private resource located in a private subnet. An RDS instance is a good example.
     - Once your function is VPC-enabled, all network traffic from your function is subject to the routing rules of your VPC/Subnet. 
     - If your function needs to interact with a public resource, you will need a route through a NAT gateway in a public subnet.
-
+- Lambda timeout: 1 second and 15 minutes.
 ### Access Control
 ![Access Control](./access-control.png)
 - S3 Bucket Policies
@@ -567,6 +610,9 @@
     - enable MFA on S3 bucket delete, 
     - create Cloudfront key pair, 
     - register for GovCloud.
+- instance profile can contain only one role, Set up an IAM service role with the appropriate permissions to allow access to the DynamoDB table. Configure an instance profile to assign this IAM role to the EC2 instance
+- when you create an IAM service role for EC2, the role automatically has EC2 identified as a trusted entity
+
 ### Identity
 - AWS_IAM authorization
     - add least-privileged permissions to the respective IAM role to securely invoke your API.
@@ -623,6 +669,7 @@
     - a fully managed extract, transform, and load (ETL) service
     - makes it easy for customers to prepare and load their data for analytics. 
     - Glue job is meant to be used for batch ETL data processing
+    - AWS Glue ETL jobs can use Amazon S3, data stores in a VPC, or on-premises JDBC data stores as a source. 
 - X-Ray
     - helps developers analyze and debug production, distributed applications
     - visualize
@@ -655,6 +702,7 @@
 - AWS DataSync
     - an online data transfer service that simplifies, automates, and accelerates copying large amounts of data to and from AWS storage services over the internet or AWS Direct Connect.
     - natively integrated with Amazon S3, Amazon EFS, Amazon FSx for Windows File Server, Amazon CloudWatch, and AWS CloudTrail, which provides seamless and secure access to your storage services, as well as detailed monitoring of the transfer.
+    - AWS recommends that you should use AWS DataSync to migrate existing data to Amazon S3, and subsequently use the File Gateway configuration of AWS Storage Gateway to retain access to the migrated data and for ongoing updates from your on-premises file-based applications
 - AWS Transfer Family, provides fully managed support for file transfers directly into and out of Amazon S3 and Amazon EFS
 - DB migrate
     - AWS Schema Conversion Tool + AWS Database Migration Service
@@ -739,34 +787,23 @@
 - Amazon Transcribe is an automatic speech recognition (ASR) service that makes it easy to convert audio to text
 - Amazon Quicksight is for the visual representation of data through Dashboards, graphs and various other modes. It has a rich feature set that helps analyze data and the complex relationships that exist between different data features
 - Alexa is Amazon’s cloud-based voice service available on hundreds of millions of devices from Amazon and third-party device manufacturers. 
-- AWS Security Hub gives you a comprehensive view of your high-priority security alerts and security posture across your AWS accounts. With Security Hub, you have a single place that aggregates, organizes, and prioritizes your security alerts, or findings, from multiple AWS services, such as Amazon GuardDuty, Amazon Inspector, Amazon Macie, AWS Identity and Access Management (IAM) Access Analyzer, and AWS Firewall Manager, as well as from AWS Partner solutions.
-- AWS Firewall Manager is a security management service that allows you to centrally configure and manage firewall rules across your accounts and applications in AWS Organization. 
-- Lambda timeout: 1 second and 15 minutes.
-- efs, POSIX compliant file storage, s3 not, it is object based
-- s3 detail
-- instance profile can contain only one role, Set up an IAM service role with the appropriate permissions to allow access to the DynamoDB table. Configure an instance profile to assign this IAM role to the EC2 instance
-- when you create an IAM service role for EC2, the role automatically has EC2 identified as a trusted entity
-- raid 0 1
-- when you create an IAM service role for EC2, the role automatically has EC2 identified as a trusted entity
-- Aurora Serverless is the perfect way to create a database that can scale down to 0 servers, and scale up to many servers
-- AWS Shield Advanced will give you DDoS protection overall, and you cannot set up rate-based rules in Shield. WAF can
-- ELB don't support cross region¿
-- Dynamic port mapping with an Application Load Balancer makes it easier to run multiple tasks on the same Amazon ECS service on an Amazon ECS cluster.
-- DeleteOnTermination
-    - when ec2 is running, use cli to change set
-    - when firstly launch, on consle can set by checkbox
-- Create an auto-scaling group that spans across 2 AZ, which min=1, max=1, desired=1, so that if an instance goes down, it is automatically recreated in another AZ
-- ec2, without elb, Create an Elastic IP and use the EC2 user-data script to attach it can work
-- AWS Glue ETL jobs can use Amazon S3, data stores in a VPC, or on-premises JDBC data stores as a source. 
-- Amazon GuardDuty, bitcoin mining
-- AWS Shield Advanced, ddos
-- waf, control bot traffic and block common attack patterns, such as SQL injection or cross-site scripting
-- Volume Gateway provides block storage, ebs
-- file gateway provides, s3, nfs, smb
-- AWS recommends that you should use AWS DataSync to migrate existing data to Amazon S3, and subsequently use the File Gateway configuration of AWS Storage Gateway to retain access to the migrated data and for ongoing updates from your on-premises file-based applications
-- Upgrades to the database engine level require downtime. Even if your RDS DB instance uses a Multi-AZ deployment, both the primary and standby DB instances are upgraded at the same time.
-- hardware maintain, primary, cause failover switch, 60 s about, if standby, no failover at all
-- os maintain, standby , then primary
+
+
+
+
+- s3 detail？
+- efs vs block
+
+
+
+
+
+
+
+
+
+
+
 
 
 
