@@ -65,7 +65,6 @@
 - Cross region replication
     - can not replicate existed data
     - can across region, S3 sync command also can
-<<<<<<< HEAD
 - Amazon S3 notification
     - first add a notification configuration that identifies the events you want Amazon S3 to publish
     - destinations:
@@ -81,11 +80,9 @@
 - Glacier
     - S3 Glacier vault is a container for storing archives. When you create a vault, you specify a vault name and the AWS Region in which you want to create the vault. 
     - S3 Glacier Vault Lock allows you to easily deploy and enforce compliance controls for individual S3 Glacier vaults with a vault lock policy
-=======
 - Features
     - byte-range request is a perfect way to get the beginning of a file
     - ScanRange parameter, start(byte), end(byte)
->>>>>>> 10.10
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -208,12 +205,9 @@
     - Ensure that your subnet's route table points to the internet gateway. 
     - Ensure that instances in your subnet have a globally unique IP address (public IPv4 address, Elastic IP address,or IPv6 address). 
     - Ensure that your network access control and security group rules allow the relevant traffic to flow to and from your instance
-<<<<<<< HEAD
 - route table
     - A subnet is implicitly associated with the main route table if it is not explicitly associated with a particular route table.
-=======
-- VPC 
->>>>>>> 10.10
+
 ### Security groups
 - By default, security groups allow all outbound traffic.
 - Security group rules are always permissive; you can't create rules that deny access.
@@ -277,11 +271,8 @@
     - The data in an instance store persists only during the lifetime of its associated instance. I
     - data persist: reboot, lost: stop, terminate, hibernate
     - provide high random I/O performance at low cost
-<<<<<<< HEAD
     - cheaper than gp2 and io1
-=======
     - if create AMI, data won't preserved
->>>>>>> 10.10
 - EBS
     - EBS volumes behave like raw, unformatted block devices. 
     - You can mount these volumes as devices on your instances. 
@@ -322,13 +313,10 @@
 - ElastiCache for redis
     - aws makes redisbe Health Insurance Portability and Accountability Act of 1996 (HIPAA)
     - Redis authentication tokens enable Redis to require a token (password) before allowing clients to execute commands
-<<<<<<< HEAD
     - purpose-built commands for working with real-time geospatial data
 - Multi-AZ, min data loss, cost
-=======
     - vs Memcached, only not support multi thread
 
->>>>>>> 10.10
 ### DB
 - DynamoDB 
     - a key-value, document database, multi-region, built-in security, backup and restore
