@@ -40,6 +40,8 @@
     - One Zone-Infrequent Access (S3 One Zone-IA), Infrequent but requires rapid access when needed. costs 20% less than S3 Standard-IA
         - the minimum storage duration is 30 days before you can transition objects from S3 Standard to S3 One Zone-IA or S3 Standard-IA
     - S3 Glacier, for data archiving, cheap, can upload objects directly or use lifecycle, Configurable retrieval times, from minutes to hours, lifecycle supports 1 day
+        - automatically encrypts data at rest
+        - SSL, https
     - S3 Glacier Deep Archive, lowest cost, Retrieval time within 12 hours
     - lifecycle type: Transition & Expiration
 - retention
@@ -63,6 +65,7 @@
 - Cross region replication
     - can not replicate existed data
     - can across region, S3 sync command also can
+<<<<<<< HEAD
 - Amazon S3 notification
     - first add a notification configuration that identifies the events you want Amazon S3 to publish
     - destinations:
@@ -78,6 +81,11 @@
 - Glacier
     - S3 Glacier vault is a container for storing archives. When you create a vault, you specify a vault name and the AWS Region in which you want to create the vault. 
     - S3 Glacier Vault Lock allows you to easily deploy and enforce compliance controls for individual S3 Glacier vaults with a vault lock policy
+=======
+- Features
+    - byte-range request is a perfect way to get the beginning of a file
+    - ScanRange parameter, start(byte), end(byte)
+>>>>>>> 10.10
 ### Gateway
 - restful api vs. websocket
     - RESTful APIs, HTTP-based, stateless
@@ -115,6 +123,8 @@
 - hosted zone
     - Public Hosted Zone - contain records that specify how you want to route traffic on the internet. 
     - Private Hosted Zone - contain records that specify how you want to route traffic in an Amazon VPC. 
+        - enableDnsSupport
+        - enableDnsHostnames
     - When you register a domain with Route 53, we create a hosted zone for you automatically.
 
 
@@ -134,6 +144,7 @@
 - Elastic Load Balancing logs 
     - time the request was received, the client's IP address,latencies, request paths, and server responses. 
 - ELB can only balance traffic in one region and not across multiple regions.
+- can offload the decryption/encryption of TLS traffic
 ### Network
 - types
     - AWS Direct Connect, establish a dedicated network connection from your premises to AWS. expensive, and takes a few days to a few months to setup
@@ -197,8 +208,12 @@
     - Ensure that your subnet's route table points to the internet gateway. 
     - Ensure that instances in your subnet have a globally unique IP address (public IPv4 address, Elastic IP address,or IPv6 address). 
     - Ensure that your network access control and security group rules allow the relevant traffic to flow to and from your instance
+<<<<<<< HEAD
 - route table
     - A subnet is implicitly associated with the main route table if it is not explicitly associated with a particular route table.
+=======
+- VPC 
+>>>>>>> 10.10
 ### Security groups
 - By default, security groups allow all outbound traffic.
 - Security group rules are always permissive; you can't create rules that deny access.
@@ -257,12 +272,16 @@
         - integrates with Amazon S3
 - Instance store
     - provides temporary block-level storage for your instance
-    - You can specify instance store volumes for an instance only when you launch it. 
+    - You can specify instance store volumes for an instance only when you **launch** it. 
     - You can't detach an instance store volume from one instance and attach it to a different instance.
     - The data in an instance store persists only during the lifetime of its associated instance. I
     - data persist: reboot, lost: stop, terminate, hibernate
     - provide high random I/O performance at low cost
+<<<<<<< HEAD
     - cheaper than gp2 and io1
+=======
+    - if create AMI, data won't preserved
+>>>>>>> 10.10
 - EBS
     - EBS volumes behave like raw, unformatted block devices. 
     - You can mount these volumes as devices on your instances. 
@@ -303,8 +322,13 @@
 - ElastiCache for redis
     - aws makes redisbe Health Insurance Portability and Accountability Act of 1996 (HIPAA)
     - Redis authentication tokens enable Redis to require a token (password) before allowing clients to execute commands
+<<<<<<< HEAD
     - purpose-built commands for working with real-time geospatial data
 - Multi-AZ, min data loss, cost
+=======
+    - vs Memcached, only not support multi thread
+
+>>>>>>> 10.10
 ### DB
 - DynamoDB 
     - a key-value, document database, multi-region, built-in security, backup and restore
@@ -395,6 +419,7 @@
     - 2 types: shell scripts and cloud-init directives
     - into the launch wizard as plain text or as a file.
     - only during the boot cycle when you first launch an instance
+        - can set to run every restart
 - instance purching options
     - Spot Instance, an unused EC2 instance that is available for less than the On-Demand price, interrupted
         - spot request: includes the desired number of instances, the instance type, the Availability Zone, and the maximum price...
@@ -474,6 +499,10 @@
 - Amazon EventBridge
     - decouple the complex architecture - This event-based service is extremely useful for connecting non-AWS SaaS (Software as a Service) services to AWS services
 - Use two SQS queues, one for high priority messages, the other of r default priority. Transformation instances first poll the high priority queue; if there is no message, they poll the default priority queue. 
+- temporary queues
+    - high-throughput, cost-effective
+    - request-response message pattern.
+    - lightweight communication channels
 ### SNS
 - pay only for the compute time that you consume
 - FIFO, can only be subscribed by a SQS FIFO
