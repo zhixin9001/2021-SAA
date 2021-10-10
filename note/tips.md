@@ -61,8 +61,8 @@
     - Configure your S3 bucket permissions so that CloudFront can use the OAI to access the files in your bucket and serve them to your users. Make sure that users can’t use a direct URL to the S3 bucket to access a file there.
     - S3 buckets don't have security groups
 - Retrieving S3 Glacier Archives
-    - Expedited 加快
-    - Standard
+    - Expedited 加快(1-5m)
+    - Standard(3-5h)
     - bulk
 - Cross region replication
     - can not replicate existed data
@@ -574,7 +574,8 @@
     - An authentication token is a unique string of characters generated using AWS Signature Version 4. 
     - Each token has a lifetime of 15 minutes.
 - IAM role
-    - manage temporary credentials for applications that run on an EC2 instance
+    - for EC2:manage temporary credentials for applications that run on an EC2 instance
+    - for ECS tasks
 - Lambda -> S3
     - On same AWS Account, just grant IAM role for Lambda
     - On different Account, IAM role for lambda & S3 bucket policy   
@@ -678,6 +679,7 @@
 - Amazon EMR
     - cloud big data platform
     - Apache Spark, Apache Hive, Apache HBase
+    - can Spot Instances for cost saving(run on EC2)
 - Elastic Container Service (ECS) / Amazon Elastic Kubernetes Service (Amazon EKS)
     - with the EC2 launch type
     - with the Fargate launch type, vcpu, memory
