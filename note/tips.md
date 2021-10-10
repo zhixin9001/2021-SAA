@@ -739,6 +739,22 @@
     - when ec2 is running, use cli to change set
     - when firstly launch, on consle can set by checkbox
 - Create an auto-scaling group that spans across 2 AZ, which min=1, max=1, desired=1, so that if an instance goes down, it is automatically recreated in another AZ
+- ec2, without elb, Create an Elastic IP and use the EC2 user-data script to attach it can work
+- AWS Glue ETL jobs can use Amazon S3, data stores in a VPC, or on-premises JDBC data stores as a source. 
+- Amazon GuardDuty, bitcoin mining
+- AWS Shield Advanced, ddos
+- waf, control bot traffic and block common attack patterns, such as SQL injection or cross-site scripting
+- Volume Gateway provides block storage, ebs
+- file gateway provides, s3, nfs, smb
+- AWS recommends that you should use AWS DataSync to migrate existing data to Amazon S3, and subsequently use the File Gateway configuration of AWS Storage Gateway to retain access to the migrated data and for ongoing updates from your on-premises file-based applications
+- Upgrades to the database engine level require downtime. Even if your RDS DB instance uses a Multi-AZ deployment, both the primary and standby DB instances are upgraded at the same time.
+- hardware maintain, primary, cause failover switch, 60 s about, if standby, no failover at all
+- os maintain, standby , then primary
+
+
+
+
+
 - 1
     - 26
 - 2
