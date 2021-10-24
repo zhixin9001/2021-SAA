@@ -790,27 +790,7 @@
 - Amazon Quicksight is for the visual representation of data through Dashboards, graphs and various other modes. It has a rich feature set that helps analyze data and the complex relationships that exist between different data features
 - Alexa is Amazon’s cloud-based voice service available on hundreds of millions of devices from Amazon and third-party device manufacturers. 
 
-
-
-
-- s3 detail？
-- efs vs block
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 2
 - 1
     - 26
 - 2
@@ -824,5 +804,24 @@
 - 6
     - 2 4 5 20 24 34 36 38 47 49 50 54 55 57 64
 
+### 3
 
+#### IAM
+- Group cannot be specified as a principal. Group is not considered an identity and used merely for managing users.
+- Identity federation，SAML 2.0 based federation（同盟）. This feature enables federated single sign-on (SSO), so users can log into the AWS Management Console or call the AWS APIs without you having to create an IAM user for everyone in your organization
+- Account A grants S3 bucket access to Account B. And Account B needs to  delegate access to its users
+- If resource-based policies and identity-based policies both apply to a request, then AWS checks all the policies for at least one Allow. 
 
+#### Monitoring
+- For monitoring memory metrics, you need to install CloudWatch Agent in the EC2 instance, and the agent publishes the memory and disk metrics to CloudWatch.
+- 如果ASG太敏感，可以：Increase the alarm evaluation interval to detect persistent problems and to ignore the temporary issues. Another possible solution is to increase the threshold for triggering the alarm.
+- With System Status Check Alarm, you can configure the instance to recover from underlying AWS issues automatically.
+    - System status checks, wait for AWS to fix the issue, or stop and start the instance yourself, which in most cases results in the instance being migrated to a new host. 
+    - Instance status checks, you typically must address the problem yourself (for example, by rebooting the instance or by making instance configuration changes).
+- Using CloudWatch Events, you can schedule tasks and invoke a Lambda function. With this approach, you can stop and start EC2 instances on a schedule.
+
+#### ELB
+- All ELB load balancers support SSL/TLS offload. ALB also supports user authentication 
+- Network Load Balancer assigns a static IP address per availability zone. 
+- Both Application and Network Load Balancers allow you to add targets by IP address. You can use this capability to register instances located on-premises 
+- limit access to the load balancer from specific IP ranges.Security Groups, are supported by both Classic and Application load balancers. You can also restrict access using Network ACL of the load balancer subnets.
