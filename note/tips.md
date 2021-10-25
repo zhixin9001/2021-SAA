@@ -803,7 +803,16 @@
     - 19 23 31 33 34 36 38 Icmp 52 57
 - 6
     - 2 4 5 20 24 34 36 38 47 49 50 54 55 57 64
-
+### Burst Plan
+- 25
+    - 完成新的练习
+- 26
+    - 看案例
+    - 新练习里的题目
+- 27
+    - 老题目第一套
+    - 看笔记
+    - 看错题
 ### 3
 
 #### IAM
@@ -825,3 +834,45 @@
 - Network Load Balancer assigns a static IP address per availability zone. 
 - Both Application and Network Load Balancers allow you to add targets by IP address. You can use this capability to register instances located on-premises 
 - limit access to the load balancer from specific IP ranges.Security Groups, are supported by both Classic and Application load balancers. You can also restrict access using Network ACL of the load balancer subnets.
+
+#### Storage
+- Instance Store with SSD will meet 100,000 IOPS, also will two Provisioned IOPS volumes in RAID 0, but too expensive
+- EBS snapshot is stored in S3 in the same region, can be used in any az in same region, or copy to new region
+
+#### Security
+- For on-premise applications, Access Key credentials are required to interact with AWS programmatically
+- Mult account, 首先想到organization
+    - AWS organizations is best option(SSO)
+    - if IAM role, need to manage roles manually
+    - Creating identities in each account is inefficient
+- you cannot specify a group as the principal.
+- RBAC vs ABAC
+    - ABAC, an authorization strategy that defines permissions based on attributes (or tags), You can structure polices to allow operations when the principal's tag matches the resource tag. useful in an environment that is growing or changing rapidly. 灵活，最小权限，个性化
+    - RBAC, requires ongoing maintenance to update the resource list, 批量，集中管理
+- Service Control Policy, With AWS Organizations, you centrally enforce the corporate policies
+- User has full access through the admin group membership. However, the bucket policy denies all write requests. So, only read requests are allowed. 先允许全部，再干掉一部分
+
+#### SQS, SNS, EventBridge, Kinesis
+- SQS, SNS, Kinesis, EventBridge, all store data across multiple availability zones in a region.(Not two az) 
+- Kinesis Firehose, only one destination
+- SQS, Visibility timeout is used for handling failures, default 30s, max 12h, 
+    - When a consumer does not delete the message before the visibility timeout expires, the queue assumes that the consumer has failed and unlocks the message for another consumer.
+    - Delay time postpones the delivery of new messages to consumers for the duration of the delay period. 
+    - Wait time is used for short-polling and long-polling
+- SQS, timeout max 12h, if > 12 and should keep order, consider Kinesis Data stream, 
+- FIFO SQS, a single message group, precessed 1 by 1
+- SQS duplication
+    - By increasing visibility timeout, we can ensure the consumer has sufficient time to process and delete the message. 
+    - check in consumer side
+    - Content deduplication is supported only in the FIFO queue.
+- SNS debug, use Delivery Status Log
+- Kinesis does not support resource-based policies, only identity-based policy 
+
+#### Lambda
+- lambda has 500 MB scratch space, for the temporary data save, but don't store user state data as requests are routed to any available Lambda function instance. 
+- incoming events -> lambda copies
+- slow running -> increase memory config
+- if > 15 min, for long-running workflows, you can use Step Functions.
+- cold-start, Lambda can automatically scale the number of concurrent function instances based on the number of requests, if log idle period...
+    - For latency-sensitive applications, configure the provisioned concurrency setting to keep a specified number of function instances always running.
+- access a private web endpoint -> configure Lambda to run inside your VPC
