@@ -891,8 +891,10 @@
 #### S3
 - IA access tier has a minimum charge of 128 KB per object, if <128 kb, maybe standard is best
 - Storage Class Analysis can continuously monitor your bucket and track ,..generates detailed reports 
-- 
 
+#### Cloud Front
+- CloudFront maintains a persistent connection to origin - and network overhead is minimized.
+- not only static content, network performance is stable and better
 
 
 
