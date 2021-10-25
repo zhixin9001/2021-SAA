@@ -896,6 +896,42 @@
 - CloudFront maintains a persistent connection to origin - and network overhead is minimized.
 - not only static content, network performance is stable and better
 
+#### Glacier
+- Range Retrieval allows you to retrieve only specified byte ranges. You pay only for the actual data retrieved
+- data is encrypt with server side encrypt
+- Expedited Retrieval can be used for Occasional requests and typically, data is retrieved between 1-5 minutes (for files < 250 MB). Standard would take 3-5 hours and Bulk would take 5-12 hours
+- Expedited with provisioned capacity, expedited retrieval request is accepted by Glacier only if there is capacity available. 
+
+#### DB
+- DynamoDB has a per-item size limit of 400 KB. Cassandra can easily handle larger items and can meet this requirement
+- Scan operations are the most expensive as they look for all items in a table.
+- DynamoDb
+    - On-demand capacity management is recommended for scenarios with an unpredictable workload. With this option, DynamoDB automatically manages the scaling based on traffic. The provisioned capacity is suitable for a predictable workload. You can further optimize provisioned cost using reservation and autoscaling
+- Aurora
+    - In Aurora, Read Replica is promoted as a primary during a primary instance failure. If you do not have an Aurora Read Replica, then Aurora would launch a new instance and promote it to primary. In other RDS products, you would need to use a multi-AZ deployment to configure a standby instance
+    - Each Aurora DB cluster has a reader endpoint. If there is more than one Aurora Replica, the reader endpoint directs each connection request to one of the Aurora Replicas. 
+
+#### Global Accelerator
+- The global accelerator automatically routes requests to the nearest endpoint. faster than route 53(cache)
+- blue-green deployment, Weight parameter 
+- you can control traffic flow to your regional endpoints. You can easily perform region-by-region upgrades by reducing traffic-dial to 0 for a region. 
+
+#### 
+- With Secrets manager, you can easily rotate, manage, and retrieve secrets.
+- AWS config continuously monitors your infrastructure, checks for compliance, and alerts you of changes.
+- Systems Manager also provides a browser-based command line and shell interface for managing Windows and Linux instances. A big benefit is administrators can use IAM to grant and revoke access to the system.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
