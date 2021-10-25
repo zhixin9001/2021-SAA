@@ -876,3 +876,23 @@
 - cold-start, Lambda can automatically scale the number of concurrent function instances based on the number of requests, if log idle period...
     - For latency-sensitive applications, configure the provisioned concurrency setting to keep a specified number of function instances always running.
 - access a private web endpoint -> configure Lambda to run inside your VPC
+- Lambda function, by default, runs in an AWS-managed VPC with access to the internet.
+- Compute Savings Plan, you can get a discount on any to compute service such as EC2, Lambda, Fargate Containers. You would need to commit to a 1-year or 3-year term. Reserved Instance pricing app
+- Reserved concurrency limits the maximum number of concurrent instances， set to 0 will stop loop
+- provisioned concurrency, we can specify the number of function instances that need to be always running
+- to get a complete view of all the microservices involved in processing a request and the flow, X-ray is a better tool
+
+#### S3 data lake
+- with default keys, S3 automatically decrypts data for anyone who has permission to access the bucket
+- Durability – S3 replicates data across multiple availability zones and multiple devices in each availability zone. 
+- Cross-Region Replication is used for disaster recovery by keeping a copy of your bucket in another region
+
+
+
+
+
+
+
+
+
+
