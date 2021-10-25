@@ -882,13 +882,16 @@
 - provisioned concurrency, we can specify the number of function instances that need to be always running
 - to get a complete view of all the microservices involved in processing a request and the flow, X-ray is a better tool
 
-#### S3 data lake
+#### data lake
 - with default keys, S3 automatically decrypts data for anyone who has permission to access the bucket
 - Durability – S3 replicates data across multiple availability zones and multiple devices in each availability zone. 
 - Cross-Region Replication is used for disaster recovery by keeping a copy of your bucket in another region
 - Kinesis Firehose, you can quickly ingest streaming data from a variety of sources and convert to Parquet(列式存储) and ORC formats. For conversion to other formats, you can use Firehose transformation using Lambda.
-- 
 
+#### S3
+- IA access tier has a minimum charge of 128 KB per object, if <128 kb, maybe standard is best
+- Storage Class Analysis can continuously monitor your bucket and track ,..generates detailed reports 
+- 
 
 
 
