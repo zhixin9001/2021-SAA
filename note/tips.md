@@ -916,7 +916,7 @@
 - blue-green deployment, Weight parameter 
 - you can control traffic flow to your regional endpoints. You can easily perform region-by-region upgrades by reducing traffic-dial to 0 for a region. 
 
-#### 
+#### Access
 - With Secrets manager, you can easily rotate, manage, and retrieve secrets.
 - AWS config continuously monitors your infrastructure, checks for compliance, and alerts you of changes.
 - Systems Manager also provides a browser-based command line and shell interface for managing Windows and Linux instances. A big benefit is administrators can use IAM to grant and revoke access to the system.
