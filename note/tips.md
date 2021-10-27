@@ -921,20 +921,60 @@
 - AWS config continuously monitors your infrastructure, checks for compliance, and alerts you of changes.
 - Systems Manager also provides a browser-based command line and shell interface for managing Windows and Linux instances. A big benefit is administrators can use IAM to grant and revoke access to the system.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Test Timed 1
+9 20 22 31 33 36 43
+- Shared Responsibility Model
+    - AWS responsibility “Security of the Cloud”
+        - This infrastructure is composed of the hardware, software, networking, and facilities that run AWS Cloud services.
+    - Customer responsibility “Security in the Cloud”
+        - encrypt, os, network, access management
+- VPC Flow Log is used for monitoring traffic at VPC, Subnet or at individual interface level. 
+    - Cloud Trail Log is used for monitoring AWS resources and changes made to the resources
+- ALB Access log, get request ip
+    - Network Load Balancer works bit differently and it forwards the Requester IP address to your application.
+- Network Load Balancer does not currently support security groups
+    - can restrict access to specific CIDR ranges using EC2 instance security group
+- Route 53 does not have a default TTL for any record type
+    - Alias record use TTL settings it point to, can't set
+- Migrate strategy
+    - Rehosting — Otherwise known as “lift-and-shift.挪动-移动”, already running in the cloud. so the hard part — migrating the application, data, and traffic — has already been done.
+    - Replatforming — I sometimes call this “lift-tinker修补-and-shift.”
+        - make a few cloud (or other) optimizations， without changing the core architecture, 
+        - reduce the amount of time,RDS
+        - fully managed platform like Amazon Elastic Beanstalk
+    - Repurchasing — Moving to a different product.drop and shop
+    - Refactoring / Re-architecting — Re-imagining how the application is architected and developed, because
+    - Retire — Get rid of.
+        - no longer useful, and can simply be turned off.
+    - Retain保留 — Usually this means “revisit” or do nothing (for now).
+- Simple Monthly Calculator or AWS Pricing Calculator, you can explore AWS services and pricing
+    - TCO Calculator is for comparing the cost of on-premises or traditional hosting environment to AWS
+- EC2 basic monitor CPU load, disk I/O, and network I/O metrics are collected at five minute intervals and stored for two weeks. 
+    - CloudWatch Agent, Memory, on-promise, logs ...
+- 多选看清选几个呀，不要只选一个，三个
+- 每个答案认真评估，不要偏见，eg Bastion Host
+- use address space 
+    - ELB, 
+    - EC2
+    - lambda,VPC related
+    - !S3
+- EC2 access S3
+    - using public IP
+    - if VPC endpoint, go through private network, bucket policy can use VPC endpint ID
+- SQS retain time: 1m - 14days, default 4d
+- Tape Gateway, backup to Glacier
+    - File Gateway and Volume Gateway, to S3, interfact is different
+    - File Gateway, support cache
+    - Volume Gateway, cached/stored mode
+- ASG, auto check instance & system status check, needn't config
+- AWS soft limits each account to 5 Elastic IPs per region
+- multi-AZ RDS, synchronous, standby slow, Transactions in primary is impacted
+    - read replica, not impacted
+    - stand by is used for fault tolerance, can't read from it
+- update, but keep full server capacity
+    - immutable, full new instances
+    - rolling with additional batch, only add additional instances
+    - rolling, no
+    - all at once, no
+- ELB route requests to your instance using private IP address
+- DynamoDB, Capacity Reservation, allows you to obtain discounts on DynamoDB provisioned throughput capacity. 1 or 3 year, region limited
